@@ -1,0 +1,87 @@
+---
+import BaseLayout from './BaseLayout.astro'
+import Header from '../components/common/Header'
+import Footer from '../components/common/Footer'
+import FloatingWhatsApp from '../components/common/FloatingWhatsApp'
+import PetLoader from '../components/animations/PetLoader'
+
+export interface Props {
+  title?: string
+  description?: string
+  image?: string
+  noindex?: boolean
+  canonical?: string
+  schema?: any
+  showLoader?: boolean
+}
+
+const {
+  title,
+  description,
+  image,
+  noindex,
+  canonical,
+  schema,
+  showLoader = true
+} = Astro.props
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image={image}
+  noindex={noindex}
+  canonical={canonical}
+  schema={schema}
+>
+  {showLoader && (
+    <PetLoader client:load />
+  )}
+  
+  <div class="flex flex-col min-h-screen">
+    <Header client:load />
+    
+    <main id="main" class="flex-grow">
+      <slot />
+    </main>
+    
+    <Footer client:load />
+  </div>
+  
+  <FloatingWhatsApp client:load />
+  
+  <!-- Back to top button -->
+  <button
+    id="back-to-top"
+    aria-label="Back to top"
+    class="fixed bottom-20 right-4 md:bottom-24 md:right-8 z-40 bg-primary-500 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary-600 hover:shadow-xl transform hover:-translate-y-1"
+  >
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+    </svg>
+  </button>
+  
+  <script>
+    // Back to top functionality
+    const backToTopButton = document.getElementById('back-to-top')
+    
+    if (backToTopButton) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          backToTopButton.classList.remove('opacity-0', 'invisible')
+          backToTopButton.classList.add('opacity-100', 'visible')
+        } else {
+          backToTopButton.classList.add('opacity-0', 'invisible')
+          backToTopButton.classList.remove('opacity-100', 'visible')
+        }
+      })
+      
+      backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        })
+      })
+    }
+  </script>
+</BaseLayout>

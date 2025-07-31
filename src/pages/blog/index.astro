@@ -1,0 +1,204 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro'
+import { pageSEO } from '../../config/seo'
+import { BLOG_CATEGORIES } from '../../config/constants'
+---
+
+<PageLayout
+  title={pageSEO.blog.title}
+  description={pageSEO.blog.description}
+>
+  <!-- Hero Section -->
+  <section class="relative py-20 bg-gradient-to-br from-secondary-50 via-white to-accent-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-4xl mx-auto">
+        <div class="inline-flex items-center gap-2 bg-secondary-100 dark:bg-secondary-900/30 text-secondary-700 dark:text-secondary-400 px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <span>📝</span>
+          <span>Pet Care Blog</span>
+        </div>
+        
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-gray-900 dark:text-white mb-6">
+          Tips, Tricks & <span class="text-gradient">Tails</span>
+        </h1>
+        
+        <p class="text-xl text-gray-600 dark:text-gray-400">
+          Expert advice, heartwarming stories, and everything you need to know about pet care.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Categories -->
+  <section class="section-padding">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Category Filter -->
+      <div class="flex flex-wrap justify-center gap-4 mb-12">
+        <a
+          href="/blog"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 text-white rounded-full font-medium hover:bg-primary-600 transition-all duration-200 shadow-lg"
+        >
+          <span>🐾</span>
+          <span>All Posts</span>
+        </a>
+        {BLOG_CATEGORIES.map((category) => (
+          <a
+            href={`/blog/category/${category.slug}`}
+            class="inline-flex items-center gap-2 px-6 py-3 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200"
+          >
+            <span>{
+              category.slug === 'pet-care-tips' ? '💡' :
+              category.slug === 'health-wellness' ? '🏥' :
+              category.slug === 'training' ? '🎓' :
+              category.slug === 'local-events' ? '📅' :
+              '⭐'
+            }</span>
+            <span>{category.name}</span>
+          </a>
+        ))}
+      </div>
+
+      <!-- Blog Posts Grid (Placeholder) -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Sample blog post cards */}
+        {[
+          {
+            title: '10 Tips for First-Time Pet Owners',
+            excerpt: 'Starting your journey as a pet parent? Here are essential tips to ensure a smooth transition for both you and your new furry friend.',
+            category: 'Pet Care Tips',
+            date: 'March 15, 2024',
+            image: '🐕'
+          },
+          {
+            title: 'Understanding Your Cat\'s Body Language',
+            excerpt: 'Decode what your feline friend is trying to tell you through their tail movements, ear positions, and vocalizations.',
+            category: 'Training',
+            date: 'March 12, 2024',
+            image: '🐈'
+          },
+          {
+            title: 'Summer Safety: Keeping Pets Cool',
+            excerpt: 'As temperatures rise, learn how to protect your pets from heat-related issues and keep them comfortable all summer long.',
+            category: 'Health & Wellness',
+            date: 'March 10, 2024',
+            image: '☀️'
+          },
+          {
+            title: 'Local Pet Adoption Fair This Weekend',
+            excerpt: 'Join us at the community center for a special adoption event featuring local shelters and rescue organizations.',
+            category: 'Local Events',
+            date: 'March 8, 2024',
+            image: '🏠'
+          },
+          {
+            title: 'Success Story: Max\'s Transformation',
+            excerpt: 'See how proper training and lots of love helped Max overcome his anxiety and become the happy pup he is today.',
+            category: 'Success Stories',
+            date: 'March 5, 2024',
+            image: '⭐'
+          },
+          {
+            title: 'DIY Pet Toys from Household Items',
+            excerpt: 'Save money and have fun creating engaging toys for your pets using simple materials you already have at home.',
+            category: 'Pet Care Tips',
+            date: 'March 3, 2024',
+            image: '🎾'
+          }
+        ].map((post, index) => (
+          <article key={index} class="bg-white dark:bg-gray-800 rounded-2xl shadow-soft hover:shadow-xl transition-all duration-300 overflow-hidden group">
+            <div class="aspect-video bg-gradient-to-br from-primary-100 to-accent-100 dark:from-primary-900 dark:to-accent-900 relative overflow-hidden">
+              <div class="absolute inset-0 flex items-center justify-center text-6xl opacity-50">
+                {post.image}
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+            
+            <div class="p-6">
+              <div class="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-3">
+                <span class="inline-flex items-center gap-1 px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 rounded-full">
+                  {post.category}
+                </span>
+                <time>{post.date}</time>
+              </div>
+              
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                {post.title}
+              </h3>
+              
+              <p class="text-gray-600 dark:text-gray-400 mb-4">
+                {post.excerpt}
+              </p>
+              
+              <a
+                href="#"
+                class="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-medium hover:gap-3 transition-all duration-200"
+              >
+                Read More
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Pagination -->
+      <div class="flex justify-center items-center gap-2 mt-12">
+        <button
+          class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-400 cursor-not-allowed"
+          disabled
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        
+        <button class="px-4 py-2 rounded-lg bg-primary-500 text-white font-medium">
+          1
+        </button>
+        
+        <button class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+          2
+        </button>
+        
+        <button class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+          3
+        </button>
+        
+        <button class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter CTA -->
+  <section class="section-padding bg-gradient-to-r from-primary-500 to-secondary-500">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+          Never Miss a Post!
+        </h2>
+        <p class="text-xl text-white/90 mb-8">
+          Get pet care tips, special offers, and adorable pet stories delivered to your inbox.
+        </p>
+        
+        <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            class="flex-1 px-6 py-3 rounded-lg bg-white/20 backdrop-blur-sm text-white placeholder-white/70 border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50"
+          />
+          <button
+            type="submit"
+            class="px-8 py-3 bg-white text-primary-600 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 shadow-xl hover:shadow-2xl"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</PageLayout>

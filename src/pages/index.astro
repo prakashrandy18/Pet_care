@@ -1,16 +1,36 @@
 ---
+import PageLayout from '../layouts/PageLayout.astro'
+import Hero from '../components/sections/Hero'
+import Services from '../components/sections/Services'
+import WhyChooseUs from '../components/sections/WhyChooseUs'
+import Testimonials from '../components/sections/Testimonials'
+import Gallery from '../components/sections/Gallery'
+import FAQ from '../components/sections/FAQ'
+import CTA from '../components/sections/CTA'
+import { pageSEO, structuredData, generateFAQSchema } from '../config/seo'
+import { FAQ_ITEMS } from '../config/constants'
 
+// Generate structured data for the homepage
+const schema = [
+  structuredData.organization,
+  structuredData.localBusiness,
+  generateFAQSchema(FAQ_ITEMS.map(item => ({
+    question: item.question,
+    answer: item.answer
+  })))
+]
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<PageLayout
+  title={pageSEO.home.title}
+  description={pageSEO.home.description}
+  schema={schema}
+>
+  <Hero client:load />
+  <Services client:visible />
+  <WhyChooseUs client:visible />
+  <Testimonials client:visible />
+  <Gallery client:visible />
+  <FAQ client:visible />
+  <CTA client:visible />
+</PageLayout>

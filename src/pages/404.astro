@@ -1,0 +1,63 @@
+---
+import PageLayout from '../layouts/PageLayout.astro'
+---
+
+<PageLayout
+  title="Page Not Found - 404"
+  description="Oops! The page you're looking for doesn't exist."
+  noindex={true}
+>
+  <section class="section-padding min-h-[60vh] flex items-center justify-center">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto">
+        <div class="text-9xl mb-8">🐕‍🦺</div>
+        
+        <h1 class="text-4xl md:text-5xl font-display font-bold text-gray-900 dark:text-white mb-4">
+          Woof! Page Not Found
+        </h1>
+        
+        <p class="text-xl text-gray-600 dark:text-gray-400 mb-8">
+          Looks like this page went for a walk and hasn't come back yet. 
+          Let's get you back on track!
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary-500 text-white rounded-lg font-medium hover:bg-primary-600 transition-all duration-200 shadow-lg hover:shadow-xl"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            Go Home
+          </a>
+          
+          <a
+            href="/contact"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white dark:bg-gray-800 text-primary-600 dark:text-primary-400 border-2 border-primary-200 dark:border-primary-800 rounded-lg font-medium hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all duration-200"
+          >
+            Contact Us
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </a>
+        </div>
+        
+        <div class="mt-12 p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl">
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            Looking for something specific? Try these popular pages:
+          </p>
+          <div class="flex flex-wrap justify-center gap-4">
+            <a href="/services" class="text-primary-600 dark:text-primary-400 hover:underline">Services</a>
+            <span class="text-gray-400">•</span>
+            <a href="/about" class="text-primary-600 dark:text-primary-400 hover:underline">About Us</a>
+            <span class="text-gray-400">•</span>
+            <a href="/blog" class="text-primary-600 dark:text-primary-400 hover:underline">Blog</a>
+            <span class="text-gray-400">•</span>
+            <a href="/contact#booking" class="text-primary-600 dark:text-primary-400 hover:underline">Book Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>

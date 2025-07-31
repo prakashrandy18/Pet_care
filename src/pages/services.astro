@@ -1,0 +1,157 @@
+---
+import PageLayout from '../layouts/PageLayout.astro'
+import { motion } from 'framer-motion'
+import { SERVICES, CERTIFICATIONS } from '../config/constants'
+import { pageSEO, generateServiceSchema } from '../config/seo'
+
+// Generate structured data for services
+const schema = SERVICES.map(service => generateServiceSchema({
+  name: service.title,
+  description: service.description,
+  price: service.price
+}))
+---
+
+<PageLayout
+  title={pageSEO.services.title}
+  description={pageSEO.services.description}
+  schema={schema}
+>
+  <!-- Hero Section -->
+  <section class="relative py-20 bg-gradient-to-br from-primary-50 via-white to-accent-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-4xl mx-auto">
+        <div class="inline-flex items-center gap-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <span>🎯</span>
+          <span>Our Services</span>
+        </div>
+        
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-gray-900 dark:text-white mb-6">
+          Comprehensive Pet Care <span class="text-gradient">Services</span>
+        </h1>
+        
+        <p class="text-xl text-gray-600 dark:text-gray-400 mb-8">
+          From daycare to grooming, we provide everything your pet needs to stay happy, healthy, and well-cared for.
+        </p>
+        
+        <div class="flex flex-wrap justify-center gap-4">
+          {CERTIFICATIONS.map((cert) => (
+            <div class="flex items-center gap-2 bg-white dark:bg-gray-800 px-4 py-2 rounded-full shadow-sm">
+              <span class="text-2xl">{cert.icon}</span>
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{cert.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Detail Section -->
+  <section class="section-padding">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="space-y-24">
+        {SERVICES.map((service, index) => (
+          <div id={service.id} class="scroll-mt-20">
+            <div class={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+              <!-- Service Image -->
+              <div class={`relative ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
+                <div class="relative aspect-video rounded-2xl overflow-hidden bg-gradient-to-br from-primary-100 to-accent-100 dark:from-primary-900 dark:to-accent-900">
+                  {/* Placeholder for service image */}
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="text-9xl opacity-20">{service.icon}</span>
+                  </div>
+                  
+                  {/* Decorative elements */}
+                  <div class="absolute -top-4 -right-4 w-24 h-24 bg-accent-500/20 rounded-full blur-2xl"></div>
+                  <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-primary-500/20 rounded-full blur-2xl"></div>
+                </div>
+                
+                {/* Price badge */}
+                <div class="absolute -bottom-6 -right-6 bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6">
+                  <p class="text-sm text-gray-600 dark:text-gray-400 mb-1">Starting from</p>
+                  <p class="text-3xl font-bold text-primary-600 dark:text-primary-400">
+                    ${service.price.from}
+                    <span class="text-lg font-normal text-gray-600 dark:text-gray-400">/{service.price.unit}</span>
+                  </p>
+                </div>
+              </div>
+              
+              <!-- Service Content -->
+              <div class={`${index % 2 === 1 ? 'lg:order-1' : ''}`}>
+                <div class="flex items-center gap-4 mb-6">
+                  <span class="text-5xl">{service.icon}</span>
+                  <h2 class="text-3xl md:text-4xl font-display font-bold text-gray-900 dark:text-white">
+                    {service.title}
+                  </h2>
+                </div>
+                
+                <p class="text-lg text-gray-600 dark:text-gray-400 mb-8">
+                  {service.description}
+                </p>
+                
+                <div class="space-y-6 mb-8">
+                  <h3 class="text-xl font-semibold text-gray-900 dark:text-white">What's Included:</h3>
+                  <div class="grid sm:grid-cols-2 gap-4">
+                    {service.features.map((feature) => (
+                      <div class="flex items-start gap-3">
+                        <div class="flex-shrink-0 w-6 h-6 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mt-0.5">
+                          <svg class="w-4 h-4 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                          </svg>
+                        </div>
+                        <span class="text-gray-700 dark:text-gray-300">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                  <a
+                    href="/contact#booking"
+                    class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary-500 text-white rounded-lg font-medium hover:bg-primary-600 transition-all duration-200 shadow-lg hover:shadow-xl"
+                  >
+                    Book This Service
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                  
+                  <a
+                    href="/contact"
+                    class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white dark:bg-gray-800 text-primary-600 dark:text-primary-400 border-2 border-primary-200 dark:border-primary-800 rounded-lg font-medium hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all duration-200"
+                  >
+                    Learn More
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section-padding bg-gradient-to-r from-primary-500 to-accent-500">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+        Ready to Pamper Your Pet?
+      </h2>
+      <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+        Book any service today and get 20% off your first visit!
+      </p>
+      <a
+        href="/contact#booking"
+        class="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary-600 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-all duration-200 shadow-xl hover:shadow-2xl"
+      >
+        Book Now & Save
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
+    </div>
+  </section>
+</PageLayout>
