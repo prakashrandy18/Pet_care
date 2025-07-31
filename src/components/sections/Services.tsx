@@ -32,7 +32,7 @@ const Services: React.FC = () => {
           </h2>
           
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            From daycare to grooming, we offer comprehensive services to keep your pets happy, healthy, and well-cared for.
+            Professional daycare and boarding services to keep your pets happy, healthy, and well-cared for.
           </p>
         </motion.div>
 
@@ -100,7 +100,7 @@ const Services: React.FC = () => {
                   {/* Price */}
                   <div className="flex items-baseline gap-2 mb-6">
                     <span className="text-3xl font-bold text-primary-600 dark:text-primary-400">
-                      ${service.price.from}
+                      ₹{service.price.from}
                     </span>
                     <span className="text-gray-600 dark:text-gray-400">
                       / {service.price.unit}

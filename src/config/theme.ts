@@ -162,20 +162,20 @@ export const theme = {
 
 export const siteConfig = {
   name: 'Ps Pet Care',
-  description: 'Premium pet daycare service offering professional care, grooming, and training for your beloved pets.',
-  url: 'https://pspetcare.com',
-  phone: '+1 (555) 123-4567',
-  whatsapp: '+15551234567',
-  email: 'hello@pspetcare.com',
+  description: 'Premium pet daycare and boarding services in Chennai. Professional care for your beloved pets.',
+  url: 'https://pspetcare.in',
+  phone: '+91 99622 03484',
+  whatsapp: '919962203484',
+  email: 'hello@pspetcare.in',
   address: {
-    street: '123 Pet Street',
-    city: 'Pet City',
-    state: 'PC',
-    zip: '12345',
-    country: 'USA'
+    street: '123 Anna Nagar',
+    city: 'Chennai',
+    state: 'Tamil Nadu',
+    zip: '600040',
+    country: 'India'
   },
   hours: {
-    weekday: '7:00 AM - 7:00 PM',
+    weekday: '7:00 AM - 8:00 PM',
     saturday: '8:00 AM - 6:00 PM',
     sunday: '9:00 AM - 5:00 PM'
   },

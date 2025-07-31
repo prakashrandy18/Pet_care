@@ -6,7 +6,7 @@ interface FormData {
   email: string
   phone: string
   petName: string
-  petType: 'dog' | 'cat' | 'other'
+  petType: 'dog' | 'cat' | 'birds'
   service: string
   message: string
 }
@@ -32,11 +32,7 @@ const ContactForm: React.FC = () => {
 
   const services = [
     'Pet Daycare',
-    'Professional Grooming',
-    'Pet Boarding',
-    'Training Classes',
-    'Dog Walking',
-    'Pet Taxi'
+    'Pet Boarding'
   ]
 
   const validateForm = (): boolean => {
@@ -76,6 +72,16 @@ const ContactForm: React.FC = () => {
     }
 
     setIsSubmitting(true)
+
+    // Store form data in localStorage
+    const submissions = JSON.parse(localStorage.getItem('contactSubmissions') || '[]')
+    const newSubmission = {
+      ...formData,
+      id: Date.now().toString(),
+      submittedAt: new Date().toISOString()
+    }
+    submissions.push(newSubmission)
+    localStorage.setItem('contactSubmissions', JSON.stringify(submissions))
 
     // Simulate form submission
     setTimeout(() => {
@@ -270,7 +276,7 @@ const ContactForm: React.FC = () => {
               >
                 <option value="dog">🐕 Dog</option>
                 <option value="cat">🐈 Cat</option>
-                <option value="other">🐾 Other</option>
+                <option value="birds">🦜 Birds</option>
               </select>
             </div>
           </div>

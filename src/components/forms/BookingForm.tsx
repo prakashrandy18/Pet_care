@@ -77,8 +77,34 @@ const BookingForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (validateStep(3)) {
-      // Handle form submission
-      console.log('Booking submitted:', bookingData)
+      // Store booking data in localStorage
+      const bookings = JSON.parse(localStorage.getItem('bookingSubmissions') || '[]')
+      const newBooking = {
+        ...bookingData,
+        id: Date.now().toString(),
+        submittedAt: new Date().toISOString()
+      }
+      bookings.push(newBooking)
+      localStorage.setItem('bookingSubmissions', JSON.stringify(bookings))
+      
+      // Show success message
+      alert('Booking confirmed! We will contact you shortly.')
+      
+      // Reset form
+      setBookingData({
+        service: '',
+        date: '',
+        time: '',
+        duration: '',
+        petName: '',
+        petType: 'dog',
+        petAge: '',
+        specialNeeds: '',
+        ownerName: '',
+        ownerEmail: '',
+        ownerPhone: ''
+      })
+      setStep(1)
     }
   }
 
@@ -162,7 +188,7 @@ const BookingForm: React.FC = () => {
                   <option value="">Choose a service...</option>
                   {SERVICES.map((service) => (
                     <option key={service.id} value={service.id}>
-                      {service.icon} {service.title} - From ${service.price.from}
+                      {service.icon} {service.title} - From ₹{service.price.from}
                     </option>
                   ))}
                 </select>
@@ -256,7 +282,7 @@ const BookingForm: React.FC = () => {
                   >
                     <option value="dog">🐕 Dog</option>
                     <option value="cat">🐈 Cat</option>
-                    <option value="other">🐾 Other</option>
+                    <option value="birds">🦜 Birds</option>
                   </select>
                 </div>
               </div>

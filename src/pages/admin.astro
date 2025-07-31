@@ -1,0 +1,149 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout 
+  title="Admin - Form Submissions"
+  description="View form submissions"
+>
+  <main class="min-h-screen bg-gray-50 dark:bg-gray-900 pt-24">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Form Submissions</h1>
+      
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-8">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Instructions</h2>
+        <p class="text-gray-600 dark:text-gray-400 mb-4">
+          Form submissions are stored in your browser's localStorage. Use the buttons below to view or manage submissions.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <button 
+            id="viewSubmissions" 
+            class="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
+          >
+            View All Submissions
+          </button>
+          <button 
+            id="exportSubmissions" 
+            class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
+          >
+            Export as JSON
+          </button>
+          <button 
+            id="clearSubmissions" 
+            class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+          >
+            Clear All Submissions
+          </button>
+        </div>
+      </div>
+      
+      <div id="submissionsContainer" class="hidden space-y-6">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+          <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Contact Form Submissions</h2>
+          <div id="contactSubmissions" class="space-y-4"></div>
+        </div>
+        
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+          <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Booking Form Submissions</h2>
+          <div id="bookingSubmissions" class="space-y-4"></div>
+        </div>
+      </div>
+      
+      <pre id="jsonOutput" class="hidden bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto"></pre>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  // Get elements
+  const viewBtn = document.getElementById('viewSubmissions')
+  const exportBtn = document.getElementById('exportSubmissions')
+  const clearBtn = document.getElementById('clearSubmissions')
+  const container = document.getElementById('submissionsContainer')
+  const contactDiv = document.getElementById('contactSubmissions')
+  const bookingDiv = document.getElementById('bookingSubmissions')
+  const jsonOutput = document.getElementById('jsonOutput')
+
+  // View submissions
+  viewBtn?.addEventListener('click', () => {
+    const contacts = JSON.parse(localStorage.getItem('contactSubmissions') || '[]')
+    const bookings = JSON.parse(localStorage.getItem('bookingSubmissions') || '[]')
+    
+    // Display contact submissions
+    if (contactDiv) {
+      contactDiv.innerHTML = contacts.length ? contacts.map(submission => `
+        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+          <div class="grid grid-cols-2 gap-2 text-sm">
+            <div><strong>Name:</strong> ${submission.name}</div>
+            <div><strong>Email:</strong> ${submission.email}</div>
+            <div><strong>Phone:</strong> ${submission.phone}</div>
+            <div><strong>Pet Name:</strong> ${submission.petName}</div>
+            <div><strong>Pet Type:</strong> ${submission.petType}</div>
+            <div><strong>Service:</strong> ${submission.service}</div>
+            <div class="col-span-2"><strong>Message:</strong> ${submission.message || 'N/A'}</div>
+            <div class="col-span-2 text-gray-500"><strong>Submitted:</strong> ${new Date(submission.submittedAt).toLocaleString()}</div>
+          </div>
+        </div>
+      `).join('') : '<p class="text-gray-500">No contact submissions yet.</p>'
+    }
+    
+    // Display booking submissions
+    if (bookingDiv) {
+      bookingDiv.innerHTML = bookings.length ? bookings.map(submission => `
+        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+          <div class="grid grid-cols-2 gap-2 text-sm">
+            <div><strong>Service:</strong> ${submission.service}</div>
+            <div><strong>Date:</strong> ${submission.date}</div>
+            <div><strong>Time:</strong> ${submission.time}</div>
+            <div><strong>Duration:</strong> ${submission.duration || 'N/A'}</div>
+            <div><strong>Pet Name:</strong> ${submission.petName}</div>
+            <div><strong>Pet Type:</strong> ${submission.petType}</div>
+            <div><strong>Pet Age:</strong> ${submission.petAge}</div>
+            <div><strong>Owner Name:</strong> ${submission.ownerName}</div>
+            <div><strong>Owner Email:</strong> ${submission.ownerEmail}</div>
+            <div><strong>Owner Phone:</strong> ${submission.ownerPhone}</div>
+            <div class="col-span-2"><strong>Special Needs:</strong> ${submission.specialNeeds || 'None'}</div>
+            <div class="col-span-2 text-gray-500"><strong>Submitted:</strong> ${new Date(submission.submittedAt).toLocaleString()}</div>
+          </div>
+        </div>
+      `).join('') : '<p class="text-gray-500">No booking submissions yet.</p>'
+    }
+    
+    container?.classList.remove('hidden')
+    jsonOutput?.classList.add('hidden')
+  })
+
+  // Export submissions
+  exportBtn?.addEventListener('click', () => {
+    const data = {
+      contacts: JSON.parse(localStorage.getItem('contactSubmissions') || '[]'),
+      bookings: JSON.parse(localStorage.getItem('bookingSubmissions') || '[]'),
+      exportedAt: new Date().toISOString()
+    }
+    
+    if (jsonOutput) {
+      jsonOutput.textContent = JSON.stringify(data, null, 2)
+      jsonOutput.classList.remove('hidden')
+    }
+    
+    // Also download as file
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `ps-pet-care-submissions-${Date.now()}.json`
+    a.click()
+    URL.revokeObjectURL(url)
+  })
+
+  // Clear submissions
+  clearBtn?.addEventListener('click', () => {
+    if (confirm('Are you sure you want to clear all submissions? This cannot be undone.')) {
+      localStorage.removeItem('contactSubmissions')
+      localStorage.removeItem('bookingSubmissions')
+      alert('All submissions have been cleared.')
+      container?.classList.add('hidden')
+      jsonOutput?.classList.add('hidden')
+    }
+  })
+</script>

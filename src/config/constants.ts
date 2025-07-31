@@ -2,163 +2,105 @@ export const SERVICES = [
   {
     id: 'daycare',
     title: 'Pet Daycare',
-    description: 'Safe and fun environment for your pets to play and socialize',
+    description: 'Safe and fun environment for your pets during the day. Perfect for working pet parents.',
     icon: '🏠',
-    features: ['Supervised playtime', 'Socialization', 'Rest areas', 'Fresh water & treats'],
-    price: { from: 35, unit: 'day' },
+    features: ['Supervised playtime', 'Socialization with other pets', 'Rest areas', 'Fresh water & meals', 'Indoor & outdoor play areas', 'Live updates'],
+    price: { from: 500, unit: 'day' },
     image: '/images/services/daycare.jpg'
-  },
-  {
-    id: 'grooming',
-    title: 'Professional Grooming',
-    description: 'Complete grooming services to keep your pet looking their best',
-    icon: '✂️',
-    features: ['Bath & blow dry', 'Hair trimming', 'Nail clipping', 'Ear cleaning'],
-    price: { from: 45, unit: 'session' },
-    image: '/images/services/grooming.jpg'
   },
   {
     id: 'boarding',
     title: 'Pet Boarding',
-    description: 'Comfortable overnight stays with 24/7 care and attention',
+    description: 'Comfortable stays from overnight to monthly. Your pet\'s home away from home.',
     icon: '🛏️',
-    features: ['Private suites', '24/7 supervision', 'Daily exercise', 'Video updates'],
-    price: { from: 65, unit: 'night' },
+    features: ['Private rooms', '24/7 supervision', 'Daily exercise & playtime', 'Video updates', 'Customized meal plans', 'Emergency vet support'],
+    price: { from: 800, unit: 'night' },
     image: '/images/services/boarding.jpg'
-  },
-  {
-    id: 'training',
-    title: 'Training Classes',
-    description: 'Professional training to help your pet learn good behaviors',
-    icon: '🎓',
-    features: ['Basic obedience', 'Advanced tricks', 'Behavior correction', 'Group classes'],
-    price: { from: 50, unit: 'class' },
-    image: '/images/services/training.jpg'
-  },
-  {
-    id: 'walking',
-    title: 'Dog Walking',
-    description: 'Regular walks to keep your dog healthy and happy',
-    icon: '🚶',
-    features: ['30-60 min walks', 'GPS tracking', 'Photo updates', 'Flexible scheduling'],
-    price: { from: 25, unit: 'walk' },
-    image: '/images/services/walking.jpg'
-  },
-  {
-    id: 'taxi',
-    title: 'Pet Taxi',
-    description: 'Safe transportation for your pet to and from our facility',
-    icon: '🚗',
-    features: ['Door-to-door service', 'Climate controlled', 'Safety harnesses', 'Insured drivers'],
-    price: { from: 20, unit: 'trip' },
-    image: '/images/services/taxi.jpg'
   }
 ] as const
 
 export const TEAM_MEMBERS = [
   {
-    id: 'sarah',
-    name: 'Sarah Johnson',
-    role: 'Founder & Lead Trainer',
-    bio: 'With over 15 years of experience in pet care, Sarah founded Ps Pet Care to provide the best possible care for your furry friends.',
-    image: '/images/team/sarah.jpg',
-    certifications: ['Certified Dog Trainer', 'Pet First Aid', 'Animal Behavior Specialist']
+    id: 'priya',
+    name: 'Priya Sharma',
+    role: 'Founder & Pet Care Expert',
+    bio: 'With over 10 years of experience in pet care, Priya founded Ps Pet Care to provide the best possible care for your furry and feathered friends.',
+    image: '/images/team/priya.jpg',
+    certifications: ['Certified Pet Care Professional', 'Pet First Aid', 'Animal Behavior Specialist']
   },
   {
-    id: 'mike',
-    name: 'Mike Chen',
-    role: 'Head Groomer',
-    bio: 'Mike is our master groomer with expertise in breed-specific cuts and gentle handling techniques.',
-    image: '/images/team/mike.jpg',
-    certifications: ['Master Groomer Certification', 'Pet Styling Expert']
-  },
-  {
-    id: 'emily',
-    name: 'Emily Rodriguez',
-    role: 'Daycare Supervisor',
-    bio: 'Emily ensures all pets have a safe and fun time during their stay with us.',
-    image: '/images/team/emily.jpg',
+    id: 'raj',
+    name: 'Raj Kumar',
+    role: 'Operations Manager',
+    bio: 'Raj ensures smooth operations and that every pet receives personalized attention during their stay.',
+    image: '/images/team/raj.jpg',
     certifications: ['Animal Care Certified', 'Pet CPR Trained']
   },
   {
-    id: 'david',
-    name: 'David Thompson',
-    role: 'Veterinary Assistant',
-    bio: 'David provides medical support and ensures the health and wellness of all pets in our care.',
-    image: '/images/team/david.jpg',
-    certifications: ['Veterinary Assistant', 'Pet Health Specialist']
+    id: 'anitha',
+    name: 'Dr. Anitha Reddy',
+    role: 'Veterinary Consultant',
+    bio: 'Dr. Anitha provides medical guidance and ensures the health and wellness of all pets in our care.',
+    image: '/images/team/anitha.jpg',
+    certifications: ['BVSc & AH', 'MVSc']
   }
 ] as const
 
 export const TESTIMONIALS = [
   {
     id: 1,
-    author: 'Jennifer Martinez',
-    petName: 'Max',
+    author: 'Kavitha Krishnan',
+    petName: 'Bruno',
     petType: 'Golden Retriever',
     rating: 5,
-    text: "I can't say enough good things about Ps Pet Care! Max always comes home happy and tired after his daycare visits. The staff truly cares about each pet.",
-    image: '/images/testimonials/jennifer.jpg'
+    text: "Excellent care for Bruno! The team is very professional and loving. I can go to work peacefully knowing Bruno is in safe hands.",
+    image: '/images/testimonials/kavitha.jpg'
   },
   {
     id: 2,
-    author: 'Robert Wilson',
-    petName: 'Luna',
-    petType: 'Persian Cat',
+    author: 'Arjun Menon',
+    petName: 'Mitthu',
+    petType: 'African Grey Parrot',
     rating: 5,
-    text: "Luna is usually very shy, but the team at Ps Pet Care made her feel so comfortable. The grooming service is exceptional!",
-    image: '/images/testimonials/robert.jpg'
+    text: "Finding a place that cares for birds was difficult until we found Ps Pet Care. Mitthu loves his time there!",
+    image: '/images/testimonials/arjun.jpg'
   },
   {
     id: 3,
-    author: 'Amanda Lee',
-    petName: 'Charlie',
-    petType: 'Labrador',
+    author: 'Sneha Patel',
+    petName: 'Simba',
+    petType: 'Persian Cat',
     rating: 5,
-    text: "The training classes have transformed Charlie! He's so well-behaved now. The trainers are patient and knowledgeable.",
-    image: '/images/testimonials/amanda.jpg'
-  },
-  {
-    id: 4,
-    author: 'Michael Brown',
-    petName: 'Bella',
-    petType: 'French Bulldog',
-    rating: 5,
-    text: "Bella loves her walks with the Ps Pet Care team. The GPS tracking gives me peace of mind, and the photo updates are wonderful!",
-    image: '/images/testimonials/michael.jpg'
+    text: "The boarding facility is excellent! Simba was well taken care of during our vacation. Daily video updates were a blessing!",
+    image: '/images/testimonials/sneha.jpg'
   }
 ] as const
 
 export const FAQ_ITEMS = [
   {
     id: 'requirements',
-    question: 'What are the requirements for pet daycare?',
-    answer: 'All pets must be up-to-date on vaccinations, including rabies, DHPP (dogs), and FVRCP (cats). Pets should also be spayed/neutered if over 6 months old and be sociable with other animals.'
+    question: 'What are the requirements for pet daycare and boarding?',
+    answer: 'All pets must be up-to-date on vaccinations. Dogs need rabies and DHPP, cats need rabies and FVRCP, and birds need a health certificate. Pets should be sociable with other animals.'
   },
   {
     id: 'hours',
     question: 'What are your operating hours?',
-    answer: 'We are open Monday-Friday 7:00 AM - 7:00 PM, Saturday 8:00 AM - 6:00 PM, and Sunday 9:00 AM - 5:00 PM. We also offer 24/7 boarding services.'
+    answer: 'We are open Monday-Friday 7:00 AM - 8:00 PM, Saturday 8:00 AM - 6:00 PM, and Sunday 9:00 AM - 5:00 PM. Boarding pets have 24/7 care.'
   },
   {
     id: 'booking',
     question: 'How do I book services?',
-    answer: 'You can book services through our website, call us directly, or use our WhatsApp booking service. We recommend booking at least 24 hours in advance.'
+    answer: 'You can book through our website contact form or WhatsApp us at 9962203484. We recommend booking at least 24 hours in advance.'
   },
   {
-    id: 'emergency',
-    question: 'What happens in case of a medical emergency?',
-    answer: 'We have a veterinary assistant on staff and partnerships with local emergency veterinary clinics. We will contact you immediately and follow your pre-registered emergency instructions.'
-  },
-  {
-    id: 'feeding',
-    question: 'Can I bring my pet\'s own food?',
-    answer: 'Absolutely! We encourage you to bring your pet\'s regular food to maintain their diet. We also provide high-quality pet food if needed.'
+    id: 'pricing',
+    question: 'What are your rates?',
+    answer: 'Daycare starts at ₹500 per day, and boarding starts at ₹800 per night. We offer discounts for weekly and monthly packages.'
   },
   {
     id: 'updates',
     question: 'Will I receive updates about my pet?',
-    answer: 'Yes! We provide regular updates including photos and videos throughout the day. For boarding pets, we offer daily video calls upon request.'
+    answer: 'Yes! We send WhatsApp updates with photos and videos throughout the day. You can also call us anytime to check on your pet.'
   }
 ] as const
 
@@ -171,8 +113,8 @@ export const BLOG_CATEGORIES = [
 ] as const
 
 export const CERTIFICATIONS = [
-  { name: 'Pet Care Certified', icon: '🏆' },
+  { name: 'Licensed Pet Care', icon: '🏆' },
   { name: 'Fully Insured', icon: '🛡️' },
-  { name: '24/7 Veterinary Support', icon: '🏥' },
-  { name: 'Member of IBPSA', icon: '🤝' }
+  { name: 'Vet Support', icon: '🏥' },
+  { name: '10+ Years Experience', icon: '⭐' }
 ] as const
