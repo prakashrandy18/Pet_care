@@ -11,6 +11,7 @@ A high-performance, SEO-optimized static website for Ps Pet Care, built with mod
 ## 🚀 Features
 
 ### Core Features
+
 - ✅ **Modern Tech Stack**: Astro + React + TypeScript + Tailwind CSS
 - ✅ **Pet-Themed Animations**: Custom pet loader, smooth transitions, and micro-interactions
 - ✅ **Responsive Design**: Mobile-first approach with seamless experience across all devices
@@ -19,6 +20,7 @@ A high-performance, SEO-optimized static website for Ps Pet Care, built with mod
 - ✅ **Dark Mode**: Automatic theme switching based on user preference
 
 ### Business Features
+
 - 📞 **Sticky CTAs**: "Call Us Now" header button and WhatsApp floating action button
 - 📝 **Smart Forms**: Pet-themed contact and multi-step booking forms with validations
 - 📸 **Interactive Gallery**: Filterable pet photos with lightbox
@@ -27,6 +29,7 @@ A high-performance, SEO-optimized static website for Ps Pet Care, built with mod
 - 🗺️ **Location Info**: Contact details, hours, and map integration ready
 
 ### Pages Included
+
 - **Homepage**: Hero, services, testimonials, gallery, FAQ, and CTAs
 - **Services**: Detailed service offerings with pricing
 - **About Us**: Company story, team profiles, and facility information
@@ -37,22 +40,26 @@ A high-performance, SEO-optimized static website for Ps Pet Care, built with mod
 ## 🛠️ Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd ps-pet-care
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Start development server**
+
    ```bash
    npm run dev
    ```
 
 4. **Build for production**
+
    ```bash
    npm run build
    ```
@@ -81,20 +88,25 @@ ps-pet-care/
 ## 🎨 Customization
 
 ### Theme Configuration
+
 Edit `src/config/theme.ts` to customize:
+
 - Brand colors
 - Typography
 - Spacing
 - Animation settings
 
 ### Content Updates
+
 - **Site Info**: Update `siteConfig` in `src/config/theme.ts`
 - **Services**: Modify `SERVICES` in `src/config/constants.ts`
 - **Team**: Update `TEAM_MEMBERS` in `src/config/constants.ts`
 - **FAQs**: Edit `FAQ_ITEMS` in `src/config/constants.ts`
 
 ### Adding Blog Posts
+
 Create new `.md` files in `src/content/blog/` with the required frontmatter:
+
 ```yaml
 ---
 title: "Your Post Title"
@@ -108,23 +120,27 @@ tags: ["tag1", "tag2"]
 ## 🚀 Deployment
 
 ### Vercel (Recommended)
+
 1. Push to GitHub
 2. Import project in Vercel
 3. Deploy with default settings
 
 ### Netlify
+
 1. Push to GitHub
 2. Import project in Netlify
 3. Build command: `npm run build`
 4. Publish directory: `dist`
 
 ### Manual Deployment
+
 1. Run `npm run build`
 2. Upload `dist` folder to your hosting provider
 
 ## 🔧 Environment Variables
 
 Create a `.env` file for local development:
+
 ```env
 PUBLIC_SITE_URL=https://pspetcare.com
 PUBLIC_GOOGLE_MAPS_API_KEY=your_api_key_here
@@ -133,20 +149,24 @@ PUBLIC_GOOGLE_MAPS_API_KEY=your_api_key_here
 ## 📱 Key Features Implementation
 
 ### Pet Loader Animation
+
 - Location: `src/components/animations/PetLoader.tsx`
 - Displays on initial page load with progress indicator
 
 ### WhatsApp Integration
+
 - Location: `src/components/common/FloatingWhatsApp.tsx`
 - Pre-filled message template
 - Pulse animation to attract attention
 
 ### Form Validations
+
 - Pet-themed error messages
 - Real-time validation
 - Multi-step booking process
 
 ### SEO Features
+
 - Dynamic meta tags per page
 - Local business schema markup
 - XML sitemap generation
@@ -156,17 +176,18 @@ PUBLIC_GOOGLE_MAPS_API_KEY=your_api_key_here
 
 All commands are run from the root of the project, from a terminal:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| Command             | Action                                           |
+| :------------------ | :----------------------------------------------- |
+| `npm install`       | Installs dependencies                            |
+| `npm run dev`       | Starts local dev server at `localhost:4321`      |
+| `npm run build`     | Build your production site to `./dist/`          |
+| `npm run preview`   | Preview your build locally, before deploying     |
+| `npm run astro ...` | Run CLI commands like `astro add`, `astro check` |
 
 ## 🧪 Testing
 
 Run development server and verify:
+
 - [ ] All pages load correctly
 - [ ] Forms submit properly
 - [ ] Animations work smoothly
@@ -177,6 +198,7 @@ Run development server and verify:
 ## 📈 Performance
 
 Target metrics:
+
 - Lighthouse Performance: 90+
 - Lighthouse Accessibility: 90+
 - Lighthouse Best Practices: 90+
@@ -197,6 +219,7 @@ This project is proprietary to Ps Pet Care. All rights reserved.
 ## 🆘 Support
 
 For support or questions:
+
 - Email: hello@pspetcare.com
 - Phone: +1 (555) 123-4567
 - WhatsApp: +15551234567
