@@ -1,6 +1,5 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro'
-import { motion } from 'framer-motion'
 import { SERVICES, CERTIFICATIONS } from '../config/constants'
 import { pageSEO, generateServiceSchema } from '../config/seo'
 
@@ -18,27 +17,51 @@ const schema = SERVICES.map(service => generateServiceSchema({
   schema={schema}
 >
   <!-- Hero Section -->
-  <section class="relative py-20 bg-gradient-to-br from-primary-50 via-white to-accent-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="relative py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-primary-50 via-white to-accent-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 overflow-hidden">
+    <!-- Decorative background elements -->
+    <div class="absolute inset-0 opacity-30">
+      <div class="absolute top-10 left-10 w-20 h-20 bg-primary-200 dark:bg-primary-800 rounded-full blur-xl"></div>
+      <div class="absolute bottom-10 right-10 w-32 h-32 bg-accent-200 dark:bg-accent-800 rounded-full blur-xl"></div>
+      <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-secondary-200 dark:bg-secondary-800 rounded-full blur-lg"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
       <div class="text-center max-w-4xl mx-auto">
-        <div class="inline-flex items-center gap-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 px-4 py-2 rounded-full text-sm font-medium mb-6">
-          <span>🎯</span>
-          <span>Our Services</span>
+        <div class="inline-flex items-center gap-3 bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300 px-6 py-3 rounded-full text-sm font-semibold mb-8 shadow-sm border border-primary-200 dark:border-primary-800">
+          <span class="text-lg">🎯</span>
+          <span>Professional Pet Care Services</span>
         </div>
         
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-gray-900 dark:text-white mb-6">
-          Comprehensive Pet Care <span class="text-gradient">Services</span>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-display font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+          Premium Pet Care <span class="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">Services</span>
         </h1>
         
-        <p class="text-xl text-gray-600 dark:text-gray-400 mb-8">
-          From daycare to grooming, we provide everything your pet needs to stay happy, healthy, and well-cared for.
+        <p class="text-lg sm:text-xl lg:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+          Trusted daycare and boarding services designed to keep your beloved pets safe, comfortable, and exceptionally well-cared for in a loving environment.
         </p>
         
-        <div class="flex flex-wrap justify-center gap-4">
+        <!-- Quick navigation to services -->
+        <div class="flex flex-wrap justify-center gap-4 mb-8">
+          {SERVICES.map((service) => (
+            <a
+              href={`#${service.id}`}
+              class="group inline-flex items-center gap-2 px-6 py-3 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm text-gray-700 dark:text-gray-300 rounded-full hover:bg-white dark:hover:bg-gray-800 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+              aria-label={`Jump to ${service.title} section`}
+            >
+              <span class="text-lg">{service.icon}</span>
+              <span class="font-medium">{service.title}</span>
+              <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </a>
+          ))}
+        </div>
+        
+        <div class="flex flex-wrap justify-center gap-3 sm:gap-4">
           {CERTIFICATIONS.map((cert) => (
-            <div class="flex items-center gap-2 bg-white dark:bg-gray-800 px-4 py-2 rounded-full shadow-sm">
-              <span class="text-2xl">{cert.icon}</span>
-              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{cert.name}</span>
+            <div class="flex items-center gap-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-4 sm:px-6 py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700">
+              <span class="text-xl sm:text-2xl">{cert.icon}</span>
+              <span class="text-sm sm:text-base font-medium text-gray-700 dark:text-gray-300">{cert.name}</span>
             </div>
           ))}
         </div>
@@ -46,87 +69,66 @@ const schema = SERVICES.map(service => generateServiceSchema({
     </div>
   </section>
 
-  <!-- Services Detail Section -->
-  <section class="section-padding">
+  <!-- Services Overview Section -->
+  <section class="py-12 sm:py-16 lg:py-20 bg-gray-50 dark:bg-gray-900/50">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="space-y-24">
-        {SERVICES.map((service, index) => (
-          <div id={service.id} class="scroll-mt-20">
-            <div class={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-              <!-- Service Image -->
-              <div class={`relative ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
-                <div class="relative aspect-video rounded-2xl overflow-hidden bg-gradient-to-br from-primary-100 to-accent-100 dark:from-primary-900 dark:to-accent-900">
-                  {/* Placeholder for service image */}
-                  <div class="absolute inset-0 flex items-center justify-center">
-                    <span class="text-9xl opacity-20">{service.icon}</span>
-                  </div>
-                  
-                  {/* Decorative elements */}
-                  <div class="absolute -top-4 -right-4 w-24 h-24 bg-accent-500/20 rounded-full blur-2xl"></div>
-                  <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-primary-500/20 rounded-full blur-2xl"></div>
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-gray-900 dark:text-white mb-6">
+          Our <span class="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">Service</span> Offerings
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+          We provide comprehensive pet care services designed with your pet's comfort, safety, and happiness as our top priorities. Each service is tailored to meet the unique needs of your beloved companion.
+        </p>
+      </div>
+      
+      <div class="grid sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {SERVICES.map((service) => (
+          <div class="group relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-accent-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="relative z-10">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-primary-100 to-accent-100 dark:from-primary-900/30 dark:to-accent-900/30 rounded-2xl flex items-center justify-center">
+                  <span class="text-2xl">{service.icon}</span>
                 </div>
-                
-                {/* Price badge */}
-                <div class="absolute -bottom-6 -right-6 bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6">
-                  <p class="text-sm text-gray-600 dark:text-gray-400 mb-1">Starting from</p>
-                  <p class="text-3xl font-bold text-primary-600 dark:text-primary-400">
-                    ${service.price.from}
-                    <span class="text-lg font-normal text-gray-600 dark:text-gray-400">/{service.price.unit}</span>
+                <div>
+                  <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">{service.title}</h3>
+                  <p class="text-primary-600 dark:text-primary-400 font-semibold">
+                    From ₹{service.price.from}/{service.price.unit}
                   </p>
                 </div>
               </div>
               
-              <!-- Service Content -->
-              <div class={`${index % 2 === 1 ? 'lg:order-1' : ''}`}>
-                <div class="flex items-center gap-4 mb-6">
-                  <span class="text-5xl">{service.icon}</span>
-                  <h2 class="text-3xl md:text-4xl font-display font-bold text-gray-900 dark:text-white">
-                    {service.title}
-                  </h2>
-                </div>
-                
-                <p class="text-lg text-gray-600 dark:text-gray-400 mb-8">
-                  {service.description}
-                </p>
-                
-                <div class="space-y-6 mb-8">
-                  <h3 class="text-xl font-semibold text-gray-900 dark:text-white">What's Included:</h3>
-                  <div class="grid sm:grid-cols-2 gap-4">
-                    {service.features.map((feature) => (
-                      <div class="flex items-start gap-3">
-                        <div class="flex-shrink-0 w-6 h-6 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mt-0.5">
-                          <svg class="w-4 h-4 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                          </svg>
-                        </div>
-                        <span class="text-gray-700 dark:text-gray-300">{feature}</span>
-                      </div>
-                    ))}
+              <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                {service.description}
+              </p>
+              
+              <div class="space-y-3 mb-8">
+                {service.features.slice(0, 3).map((feature) => (
+                  <div class="flex items-center gap-3">
+                    <div class="flex-shrink-0 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+                      <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                      </svg>
+                    </div>
+                    <span class="text-sm text-gray-600 dark:text-gray-300">{feature}</span>
                   </div>
-                </div>
-                
-                <div class="flex flex-col sm:flex-row gap-4">
-                  <a
-                    href="/contact#booking"
-                    class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary-500 text-white rounded-lg font-medium hover:bg-primary-600 transition-all duration-200 shadow-lg hover:shadow-xl"
-                  >
-                    Book This Service
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </a>
-                  
-                  <a
-                    href="/contact"
-                    class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white dark:bg-gray-800 text-primary-600 dark:text-primary-400 border-2 border-primary-200 dark:border-primary-800 rounded-lg font-medium hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all duration-200"
-                  >
-                    Learn More
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </a>
-                </div>
+                ))}
+                {service.features.length > 3 && (
+                  <p class="text-sm text-primary-600 dark:text-primary-400 font-medium">
+                    +{service.features.length - 3} more features
+                  </p>
+                )}
               </div>
+              
+              <a
+                href={`#${service.id}`}
+                class="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-semibold hover:text-primary-700 dark:hover:text-primary-300 transition-colors duration-200"
+              >
+                <span>Learn More</span>
+                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
             </div>
           </div>
         ))}
@@ -134,24 +136,168 @@ const schema = SERVICES.map(service => generateServiceSchema({
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="section-padding bg-gradient-to-r from-primary-500 to-accent-500">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-4">
-        Ready to Pamper Your Pet?
-      </h2>
-      <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-        Book any service today and get 20% off your first visit!
-      </p>
-      <a
-        href="/contact#booking"
-        class="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary-600 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-all duration-200 shadow-xl hover:shadow-2xl"
-      >
-        Book Now & Save
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-        </svg>
-      </a>
+  <!-- Services Detail Section -->
+  <section class="py-16 sm:py-20 lg:py-28">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="space-y-20 lg:space-y-32">
+        {SERVICES.map((service, index) => {
+          const isEven = index % 2 === 0;
+          return (
+            <div id={service.id} class="scroll-mt-20">
+              <div class={`grid lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20 items-center ${!isEven ? 'lg:grid-flow-dense' : ''}`}>
+                <!-- Service Image -->
+                <div class={`relative ${!isEven ? 'lg:col-start-2' : ''}`}>
+                  <div class="relative aspect-[4/3] rounded-3xl overflow-hidden bg-gradient-to-br from-primary-50 to-accent-50 dark:from-primary-900/50 dark:to-accent-900/50 shadow-2xl">
+                    {/* Main service visual */}
+                    <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary-100/80 to-accent-100/80 dark:from-primary-800/80 dark:to-accent-800/80">
+                      <span class="text-8xl sm:text-9xl lg:text-[10rem] opacity-30 transform hover:scale-110 transition-transform duration-500">{service.icon}</span>
+                    </div>
+                    
+                    {/* Subtle decorative elements */}
+                    <div class="absolute top-6 right-6 w-16 h-16 bg-accent-400/20 rounded-full blur-xl"></div>
+                    <div class="absolute bottom-6 left-6 w-20 h-20 bg-primary-400/20 rounded-full blur-xl"></div>
+                    
+                    {/* Enhanced price badge */}
+                    <div class="absolute -bottom-8 -right-8 bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-6 border border-gray-100 dark:border-gray-700">
+                      <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-2 font-medium uppercase tracking-wide">Starting from</p>
+                      <p class="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary-600 dark:text-primary-400">
+                        ₹{service.price.from}
+                        <span class="text-base sm:text-lg font-normal text-gray-500 dark:text-gray-400">/{service.price.unit}</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Service Content -->
+                <div class={`${!isEven ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
+                  <div class="space-y-8">
+                    {/* Service header */}
+                    <div class="space-y-6">
+                      <div class="flex items-center gap-4">
+                        <div class="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-2xl">
+                          <span class="text-3xl sm:text-4xl">{service.icon}</span>
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-gray-900 dark:text-white leading-tight">
+                          {service.title}
+                        </h2>
+                      </div>
+                      
+                      <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+                        {service.description}
+                      </p>
+                    </div>
+                    
+                    {/* Features section */}
+                    <div class="space-y-6">
+                      <h3 class="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white">What's Included:</h3>
+                      <div class="grid sm:grid-cols-2 gap-4">
+                        {service.features.map((feature) => (
+                          <div class="flex items-start gap-4 p-3 rounded-xl bg-gray-50/50 dark:bg-gray-800/30 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-200">
+                            <div class="flex-shrink-0 w-7 h-7 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mt-0.5 shadow-sm">
+                              <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                              </svg>
+                            </div>
+                            <span class="text-gray-700 dark:text-gray-300 font-medium">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    {/* Action buttons */}
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                      <a
+                        href="/contact#booking"
+                        class="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-2xl font-semibold text-lg hover:from-primary-600 hover:to-primary-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                      >
+                        Book This Service
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </a>
+                      
+                      <a
+                        href="/contact"
+                        class="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-white dark:bg-gray-800 text-primary-600 dark:text-primary-400 border-2 border-primary-200 dark:border-primary-700 rounded-2xl font-semibold text-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-300 shadow-md hover:shadow-lg"
+                      >
+                        Learn More
+                        <svg class="w-5 h-5 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced CTA Section -->
+  <section class="relative py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-primary-500 via-primary-600 to-accent-600 overflow-hidden">
+    <!-- Background decoration -->
+    <div class="absolute inset-0 opacity-20">
+      <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-white/10 to-transparent"></div>
+      <div class="absolute top-10 right-10 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-10 left-10 w-40 h-40 bg-accent-300/20 rounded-full blur-3xl"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary-300/10 rounded-full blur-3xl"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
+      <div class="max-w-4xl mx-auto space-y-8">
+        <div class="space-y-6">
+          <h2 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white leading-tight">
+            Ready to Pamper <span class="block sm:inline">Your Pet?</span>
+          </h2>
+          <p class="text-xl sm:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+            Book any service today and give your beloved pet the care they deserve. Special offer: 20% off your first visit!
+          </p>
+        </div>
+        
+        <div class="flex flex-col sm:flex-row gap-6 justify-center items-center pt-4">
+          <a
+            href="/contact#booking"
+            class="group inline-flex items-center gap-3 px-10 py-5 bg-white text-primary-600 rounded-2xl font-bold text-xl hover:bg-gray-50 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:-translate-y-1"
+          >
+            <span>Book Now & Save 20%</span>
+            <svg class="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+          
+          <a
+            href="/contact"
+            class="group inline-flex items-center gap-3 px-8 py-4 bg-transparent text-white border-2 border-white/30 rounded-2xl font-semibold text-lg hover:bg-white/10 hover:border-white/50 transition-all duration-300"
+          >
+            <span>Learn More</span>
+            <svg class="w-5 h-5 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </a>
+        </div>
+        
+        <!-- Trust indicators -->
+        <div class="pt-8 border-t border-white/20">
+          <p class="text-sm text-white/70 mb-4">Trusted by 500+ pet parents in Chennai</p>
+          <div class="flex justify-center items-center gap-8 text-white/60">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">⭐</span>
+              <span class="text-sm font-medium">4.9/5 Rating</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-lg">🏆</span>
+              <span class="text-sm font-medium">25+ Years Experience</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-lg">❤️</span>
+              <span class="text-sm font-medium">Locally Trusted</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </PageLayout>
