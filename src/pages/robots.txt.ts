@@ -10,7 +10,7 @@ Allow: /
 Crawl-delay: 1
 
 # Sitemap locations
-Sitemap: ${siteUrl}/sitemap-index.xml
+Sitemap: ${siteUrl.replace(/\/$/, '')}/sitemap-index.xml
 
 # Disallow admin and development areas
 Disallow: /admin/

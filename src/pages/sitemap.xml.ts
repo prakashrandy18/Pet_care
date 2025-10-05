@@ -2,12 +2,17 @@ import type { APIRoute } from 'astro'
 import { siteConfig } from '../config/theme'
 
 export const GET: APIRoute = () => {
-  // This is a placeholder since we're using @astrojs/sitemap
-  // The actual sitemap will be generated automatically
-  return new Response('', {
-    status: 301,
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://pspetcare.in/sitemap-index.xml</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+  </sitemap>
+</sitemapindex>`
+
+  return new Response(sitemap, {
     headers: {
-      'Location': '/sitemap-index.xml',
+      'Content-Type': 'application/xml; charset=utf-8',
     },
   })
 }
