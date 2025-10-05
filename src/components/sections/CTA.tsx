@@ -6,8 +6,8 @@ const CTA: React.FC = () => {
   return (
     <section className="section-padding bg-gradient-to-br from-primary-500 via-primary-600 to-accent-500 relative overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-paw-pattern bg-repeat" />
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-600/10 to-accent-600/10" />
       </div>
 
       {/* Static decorative elements */}

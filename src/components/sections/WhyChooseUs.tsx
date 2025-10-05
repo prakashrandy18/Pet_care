@@ -126,7 +126,7 @@ const WhyChooseUs: React.FC = () => {
         >
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0 bg-paw-pattern bg-repeat" />
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-50/50 to-accent-50/50 bg-repeat" />
           </div>
 
           <div className="relative grid grid-cols-2 lg:grid-cols-4 gap-8">

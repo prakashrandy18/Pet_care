@@ -124,7 +124,7 @@ const ContactForm: React.FC = () => {
     >
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-paw-pattern bg-repeat" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 to-accent-50/30 bg-repeat" />
       </div>
 
       <div className="relative space-y-6">

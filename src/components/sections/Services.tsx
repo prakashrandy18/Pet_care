@@ -57,7 +57,7 @@ const Services: React.FC = () => {
               <div className="relative h-full bg-white dark:bg-gray-800 rounded-2xl shadow-soft hover:shadow-xl transition-all duration-300 overflow-hidden">
                 {/* Card Background Pattern */}
                 <div className="absolute inset-0 opacity-5">
-                  <div className="absolute inset-0 bg-paw-pattern bg-repeat bg-center" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary-50/50 to-accent-50/50 bg-repeat bg-center" />
                 </div>
 
                 {/* Card Content */}

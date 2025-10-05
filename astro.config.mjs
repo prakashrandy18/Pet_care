@@ -47,7 +47,7 @@ export default defineConfig({
         }
       },
       cssCodeSplit: true,
-      minify: 'terser'
+      minify: 'esbuild'
     }
   },
   compressHTML: true,
