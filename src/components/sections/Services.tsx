@@ -6,7 +6,12 @@ const Services: React.FC = () => {
   const [hoveredService, setHoveredService] = useState<string | null>(null)
 
   return (
-    <section id="services" className="section-padding bg-gray-50 dark:bg-gray-900">
+    <section 
+      id="services" 
+      className="section-padding bg-gray-50 dark:bg-gray-900"
+      role="region"
+      aria-labelledby="services-heading"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -27,7 +32,7 @@ const Services: React.FC = () => {
             <span>Our Services</span>
           </motion.div>
           
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-gray-900 dark:text-white mb-4">
+          <h2 id="services-heading" className="text-4xl md:text-5xl font-display font-bold text-gray-900 dark:text-white mb-4">
             Everything Your Pet Needs
           </h2>
           
@@ -58,16 +63,9 @@ const Services: React.FC = () => {
                 {/* Card Content */}
                 <div className="relative p-8">
                   {/* Icon */}
-                  <motion.div
-                    animate={{
-                      scale: hoveredService === service.id ? 1.1 : 1,
-                      rotate: hoveredService === service.id ? [0, -5, 5, 0] : 0,
-                    }}
-                    transition={{ duration: 0.3 }}
-                    className="text-5xl mb-4"
-                  >
+                  <div className="text-5xl mb-4 transition-transform duration-300 hover:scale-110">
                     {service.icon}
-                  </motion.div>
+                  </div>
 
                   {/* Title */}
                   <h3 className="text-2xl font-display font-bold text-gray-900 dark:text-white mb-3">
@@ -82,18 +80,15 @@ const Services: React.FC = () => {
                   {/* Features */}
                   <ul className="space-y-2 mb-6">
                     {service.features.map((feature, i) => (
-                      <motion.li
+                      <li
                         key={i}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: hoveredService === service.id ? i * 0.1 : 0 }}
                         className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
                       >
                         <svg className="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
                         <span>{feature}</span>
-                      </motion.li>
+                      </li>
                     ))}
                   </ul>
 
@@ -113,8 +108,9 @@ const Services: React.FC = () => {
                     className="inline-flex items-center gap-2 w-full justify-center px-6 py-3 bg-primary-500 text-white rounded-lg font-medium hover:bg-primary-600 transition-all duration-200 group"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
+                    aria-label={`Learn more about ${service.title} services`}
                   >
-                    Learn More
+                    View {service.title} Details
                     <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>

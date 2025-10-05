@@ -8,7 +8,7 @@ interface PetLoaderProps {
 
 export const PetLoader: React.FC<PetLoaderProps> = ({ 
   onLoadComplete, 
-  minLoadTime = 2000 
+  minLoadTime = 500 
 }) => {
   const [isLoading, setIsLoading] = useState(true)
   const [loadProgress, setLoadProgress] = useState(0)

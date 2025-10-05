@@ -54,7 +54,7 @@ export const TESTIMONIALS = [
     petType: 'Beagle',
     rating: 5,
     text: "PS Pet Care has been amazing for Charlie! They understand his beagle energy and give him the perfect balance of play and rest. Very satisfied with their care and WhatsApp updates throughout the day.",
-    image: '/images/testimonials/akash.jpg'
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face'
   },
   {
     id: 2,
@@ -63,7 +63,7 @@ export const TESTIMONIALS = [
     petType: 'Indian Spitz',
     rating: 5,
     text: "Kutty loves going to PS Pet Care! They treat him like family. The home-based environment makes such a difference - he's never stressed when I drop him off.",
-    image: '/images/testimonials/priya.jpg'
+    image: 'https://images.unsplash.com/photo-1494790108755-2616b612b829?w=100&h=100&fit=crop&crop=face'
   },
   {
     id: 3,
@@ -72,7 +72,7 @@ export const TESTIMONIALS = [
     petType: 'Persian Cat',
     rating: 5,
     text: "I was worried about leaving Mani for 3 days, but PS Pet Care took excellent care of him. Regular updates and photos gave me peace of mind during my business trip.",
-    image: '/images/testimonials/rajesh.jpg'
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face'
   },
   {
     id: 4,
@@ -81,7 +81,7 @@ export const TESTIMONIALS = [
     petType: 'Labrador Mix',
     rating: 5,
     text: "Rocky has been going to PS Pet Care for 6 months now. The care is so personal and loving. They really understand each pet's individual needs.",
-    image: '/images/testimonials/lakshmi.jpg'
+    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face'
   },
   {
     id: 5,
@@ -90,7 +90,7 @@ export const TESTIMONIALS = [
     petType: 'Golden Retriever',
     rating: 5,
     text: "Excellent service! Simba gets excited every time we reach their place. The staff is very caring and professional. Highly recommend for pet daycare in Chennai.",
-    image: '/images/testimonials/arun.jpg'
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face'
   }
 ] as const
 

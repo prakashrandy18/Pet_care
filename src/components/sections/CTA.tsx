@@ -10,37 +10,9 @@ const CTA: React.FC = () => {
         <div className="absolute inset-0 bg-paw-pattern bg-repeat" />
       </div>
 
-      {/* Floating Elements */}
-      <motion.div
-        animate={{
-          y: [0, -20, 0],
-          rotate: [0, 10, 0],
-        }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-        className="absolute top-10 left-10 text-6xl opacity-20"
-      >
-        🐕
-      </motion.div>
-      
-      <motion.div
-        animate={{
-          y: [0, 20, 0],
-          rotate: [0, -10, 0],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1
-        }}
-        className="absolute bottom-10 right-10 text-6xl opacity-20"
-      >
-        🐈
-      </motion.div>
+      {/* Static decorative elements */}
+      <div className="absolute top-10 left-10 text-6xl opacity-10">🐕</div>
+      <div className="absolute bottom-10 right-10 text-6xl opacity-10">🐈</div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
@@ -73,15 +45,9 @@ const CTA: React.FC = () => {
           >
             Ready to Give Your Pet
             <br />
-            <motion.span
-              animate={{
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-              }}
-              transition={{ duration: 5, repeat: Infinity }}
-              className="bg-gradient-to-r from-yellow-300 via-white to-yellow-300 bg-clip-text text-transparent bg-[length:200%_100%]"
-            >
+            <span className="bg-gradient-to-r from-yellow-300 via-white to-yellow-300 bg-clip-text text-transparent">
               The Best Care?
-            </motion.span>
+            </span>
           </motion.h2>
 
           {/* Description */}
@@ -106,12 +72,14 @@ const CTA: React.FC = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
           >
             <motion.a
-              href="/contact#booking"
+              href="https://forms.gle/YJ4bxyNAo1SmQ92v9"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-primary-600 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-all duration-200 shadow-xl hover:shadow-2xl group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Book Now & Save 20%
+              Book Pet Daycare & Save 20%
               <motion.svg
                 className="w-5 h-5"
                 fill="none"

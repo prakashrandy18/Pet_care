@@ -1,14 +1,27 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro'
+import Breadcrumb from '../components/common/Breadcrumb.astro'
 import { TEAM_MEMBERS, CERTIFICATIONS } from '../config/constants'
 import { pageSEO } from '../config/seo'
 import { siteConfig } from '../config/theme'
+
+const breadcrumbItems = [
+  { label: 'Home', href: '/' },
+  { label: 'About Us' }
+]
 ---
 
 <PageLayout
   title={pageSEO.about.title}
   description={pageSEO.about.description}
 >
+  <!-- Breadcrumb -->
+  <div class="bg-gray-50 dark:bg-gray-900 pt-20">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumb items={breadcrumbItems} />
+    </div>
+  </div>
+
   <!-- Hero Section -->
   <section class="relative py-20 bg-gradient-to-br from-secondary-50 via-white to-primary-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,7 +55,9 @@ import { siteConfig } from '../config/theme'
             <p class="text-lg">
               What started as caring for neighborhood pets in our home has grown into PS Pet Care. 
               For over 25 years, we've been looking after dogs, cats, and birds, learning that every 
-              pet has unique needs and deserves individual attention.
+              pet has unique needs and deserves individual attention. Today, we offer comprehensive 
+              <a href="/services" class="text-primary-600 dark:text-primary-400 hover:underline">pet daycare and boarding services</a> 
+              throughout Chennai.
             </p>
             
             <p>

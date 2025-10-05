@@ -53,7 +53,8 @@ const Header: React.FC = () => {
               <div className="relative">
                 <img 
                   src="/images/ps-pet-care-logo.jpg" 
-                  alt="PS Pet Care Logo" 
+                  alt="PS Pet Care logo - Professional pet daycare and boarding services in Chennai, Tamil Nadu" 
+                  title="PS Pet Care - Chennai's Trusted Pet Daycare"
                   className="w-10 h-10 object-cover rounded-full"
                 />
                 <motion.div
@@ -116,7 +117,7 @@ const Header: React.FC = () => {
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="lg:hidden p-2 text-gray-700 dark:text-gray-300 hover:text-primary-500 transition-colors"
+                className="lg:hidden p-3 text-gray-700 dark:text-gray-300 hover:text-primary-500 transition-colors min-h-[48px] min-w-[48px] touch-manipulation flex items-center justify-center"
                 aria-label="Toggle menu"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -139,7 +140,7 @@ const Header: React.FC = () => {
             initial={{ opacity: 0, x: '100%' }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
             className="fixed inset-y-0 right-0 w-full max-w-sm z-50 bg-white dark:bg-gray-900 shadow-xl lg:hidden"
           >
             <div className="flex flex-col h-full">
@@ -150,7 +151,7 @@ const Header: React.FC = () => {
                 </span>
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-2 text-gray-700 dark:text-gray-300 hover:text-primary-500 transition-colors"
+                  className="p-3 text-gray-700 dark:text-gray-300 hover:text-primary-500 transition-colors min-h-[48px] min-w-[48px] touch-manipulation flex items-center justify-center"
                   aria-label="Close menu"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -165,7 +166,7 @@ const Header: React.FC = () => {
                   <motion.a
                     key={link.href}
                     href={link.href}
-                    className="block py-3 text-lg font-medium text-gray-700 dark:text-gray-300 hover:text-primary-500 transition-colors"
+                    className="block py-4 px-4 text-lg font-medium text-gray-700 dark:text-gray-300 hover:text-primary-500 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors rounded-lg min-h-[56px] touch-manipulation"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
@@ -182,7 +183,7 @@ const Header: React.FC = () => {
                   href="https://forms.gle/YJ4bxyNAo1SmQ92v9"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full px-6 py-3 bg-primary-500 text-white rounded-lg font-medium hover:bg-primary-600 transition-all duration-200"
+                  className="flex items-center justify-center gap-2 w-full px-6 py-4 bg-primary-500 text-white rounded-lg font-medium hover:bg-primary-600 transition-all duration-200 min-h-[52px] touch-manipulation"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >

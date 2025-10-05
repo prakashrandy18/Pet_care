@@ -42,6 +42,8 @@ const WhyChooseUs: React.FC = () => {
   return (
     <section
       id="why-choose-us"
+      role="region"
+      aria-labelledby="why-choose-heading"
       className="section-padding bg-white dark:bg-gray-950"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -64,7 +66,7 @@ const WhyChooseUs: React.FC = () => {
             <span>Why Choose Us</span>
           </motion.div>
 
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-gray-900 dark:text-white mb-4">
+          <h2 id="why-choose-heading" className="text-4xl md:text-5xl font-display font-bold text-gray-900 dark:text-white mb-4">
             Why <span className="text-gradient">Choose Us</span>
           </h2>
 

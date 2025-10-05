@@ -3,54 +3,15 @@ import React from "react";
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-50 via-white to-accent-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900">
-      {/* Animated background elements */}
+    <section 
+      className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-50 via-white to-accent-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900"
+      role="banner"
+      aria-labelledby="hero-heading"
+    >
+      {/* Simplified background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          animate={{
-            rotate: 360,
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-            scale: { duration: 5, repeat: Infinity, ease: "easeInOut" },
-          }}
-          className="absolute -top-20 -left-20 w-96 h-96 bg-primary-200/30 dark:bg-primary-800/20 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            rotate: -360,
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            rotate: { duration: 25, repeat: Infinity, ease: "linear" },
-            scale: { duration: 7, repeat: Infinity, ease: "easeInOut" },
-          }}
-          className="absolute -bottom-20 -right-20 w-96 h-96 bg-accent-200/30 dark:bg-accent-800/20 rounded-full blur-3xl"
-        />
-
-        {/* Floating paw prints */}
-        {[...Array(5)].map((_, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 100 }}
-            animate={{
-              opacity: [0, 0.3, 0],
-              y: [-100, -1000],
-              x: Math.sin(i) * 100,
-            }}
-            transition={{
-              duration: 10 + i * 2,
-              repeat: Infinity,
-              delay: i * 2,
-              ease: "linear",
-            }}
-            className="absolute bottom-0"
-            style={{ left: `${20 + i * 15}%` }}
-          >
-            <span className="text-4xl opacity-20">🐾</span>
-          </motion.div>
-        ))}
+        <div className="absolute -top-20 -left-20 w-96 h-96 bg-primary-200/30 dark:bg-primary-800/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute -bottom-20 -right-20 w-96 h-96 bg-accent-200/30 dark:bg-accent-800/20 rounded-full blur-3xl animate-pulse" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20">
@@ -62,29 +23,24 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <motion.h1
+              id="hero-heading"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-gray-900 dark:text-white mb-6"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-gray-900 dark:text-white mb-6 leading-tight"
             >
               <span className="text-gradient">Pet Care</span>
               <br />
-              <motion.span
-                animate={{
-                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                }}
-                transition={{ duration: 5, repeat: Infinity }}
-                className="bg-gradient-to-r from-primary-500 via-accent-500 to-secondary-500 bg-clip-text text-transparent bg-[length:200%_100%]"
-              >
+              <span className="bg-gradient-to-r from-primary-500 via-accent-500 to-secondary-500 bg-clip-text text-transparent">
                 You Can Trust
-              </motion.span>
+              </span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-xl text-gray-600 dark:text-gray-400 mb-8"
+              className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 mb-8 leading-relaxed"
             >
               Safe and reliable daycare and boarding services in Chennai. Your
               pet's wellbeing is our priority.
@@ -100,18 +56,16 @@ const Hero: React.FC = () => {
                 href="https://forms.gle/YJ4bxyNAo1SmQ92v9"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-500 text-white rounded-xl font-semibold text-lg hover:bg-primary-600 transition-all duration-200 shadow-lg hover:shadow-xl group"
+                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-4 bg-primary-500 text-white rounded-xl font-semibold text-base sm:text-lg hover:bg-primary-600 transition-all duration-200 shadow-lg hover:shadow-xl group min-h-[48px] touch-manipulation w-full sm:w-auto"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 Book Now
-                <motion.svg
-                  className="w-5 h-5"
+                <svg
+                  className="w-5 h-5 transition-transform group-hover:translate-x-1"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1, repeat: Infinity }}
                 >
                   <path
                     strokeLinecap="round"
@@ -119,12 +73,12 @@ const Hero: React.FC = () => {
                     strokeWidth={2}
                     d="M13 7l5 5m0 0l-5 5m5-5H6"
                   />
-                </motion.svg>
+                </svg>
               </motion.a>
 
               <motion.a
                 href="/services"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white dark:bg-gray-800 text-primary-600 dark:text-primary-400 border-2 border-primary-200 dark:border-primary-800 rounded-xl font-semibold text-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-4 bg-white dark:bg-gray-800 text-primary-600 dark:text-primary-400 border-2 border-primary-200 dark:border-primary-800 rounded-xl font-semibold text-base sm:text-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all duration-200 min-h-[48px] touch-manipulation w-full sm:w-auto"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -150,25 +104,30 @@ const Hero: React.FC = () => {
             className="relative"
           >
             <div className="relative">
-              {/* Decorative circles */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 rounded-full border-4 border-dashed border-primary-200 dark:border-primary-800"
-              />
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-4 rounded-full border-4 border-dotted border-accent-200 dark:border-accent-800"
-              />
+              {/* Simplified decorative circles */}
+              <div className="absolute inset-0 rounded-full border-4 border-dashed border-primary-200 dark:border-primary-800 animate-spin" style={{ animationDuration: '30s' }} />
+              <div className="absolute inset-4 rounded-full border-4 border-dotted border-accent-200 dark:border-accent-800" />
 
               {/* Main image container */}
               <div className="relative z-10 rounded-full overflow-hidden bg-gradient-to-br from-primary-100 to-accent-100 dark:from-primary-900 dark:to-accent-900 p-8">
-                <img
-                  src="/images/hero/happy-pets.jpg"
-                  alt="Happy pets at Ps Pet Care"
-                  className="w-full h-full object-cover rounded-full"
-                />
+                <picture>
+                  <source 
+                    media="(max-width: 640px)" 
+                    srcSet="/images/hero/happy-pets.jpg" 
+                    sizes="280px"
+                  />
+                  <img
+                    src="/images/hero/happy-pets.jpg"
+                    alt="Happy dogs and cats enjoying professional daycare services at PS Pet Care facility in Chennai, Tamil Nadu"
+                    title="PS Pet Care - Professional Pet Daycare Services"
+                    className="w-full h-full object-cover rounded-full"
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="async"
+                    width="400"
+                    height="400"
+                  />
+                </picture>
 
                 {/* Animated overlay elements */}
                 <motion.div

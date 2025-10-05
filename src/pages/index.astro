@@ -3,14 +3,24 @@ import PageLayout from '../layouts/PageLayout.astro'
 import Hero from '../components/sections/Hero'
 import Services from '../components/sections/Services'
 import WhyChooseUs from '../components/sections/WhyChooseUs'
+import ServiceComparison from '../components/sections/ServiceComparison'
 import Testimonials from '../components/sections/Testimonials'
+import QuickFAQ from '../components/sections/QuickFAQ'
 import CTA from '../components/sections/CTA'
-import { pageSEO, structuredData } from '../config/seo'
+import { pageSEO, structuredData, generateReviewSchema, generatePetCareServiceSchema } from '../config/seo'
+import { TESTIMONIALS } from '../config/constants'
 
 // Generate structured data for the homepage
 const schema = [
   structuredData.organization,
-  structuredData.localBusiness
+  structuredData.localBusiness,
+  generateReviewSchema(TESTIMONIALS.map(t => ({
+    author: t.author,
+    rating: t.rating,
+    text: t.text,
+    petType: t.petType
+  }))),
+  generatePetCareServiceSchema()
 ]
 ---
 
@@ -19,9 +29,11 @@ const schema = [
   description={pageSEO.home.description}
   schema={schema}
 >
-  <Hero client:load />
+  <Hero client:visible />
   <Services client:visible />
   <WhyChooseUs client:visible />
+  <ServiceComparison client:visible />
   <Testimonials client:visible />
+  <QuickFAQ client:visible />
   <CTA client:visible />
 </PageLayout>

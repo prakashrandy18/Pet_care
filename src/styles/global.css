@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fredoka:wght@300;400;500;600;700&display=swap');
+/* Fonts loaded via preload in head for better performance */
 
 @tailwind base;
 @tailwind components;
@@ -118,6 +118,7 @@
 }
 
 @layer utilities {
+  /* Mobile-first animations */
   .animation-delay-100 {
     animation-delay: 100ms;
   }
@@ -136,6 +137,28 @@
 
   .animation-delay-500 {
     animation-delay: 500ms;
+  }
+
+  /* Mobile touch optimizations */
+  .touch-target {
+    @apply touch-manipulation min-h-[44px] min-w-[44px];
+  }
+
+  .mobile-optimized {
+    @apply touch-manipulation select-none;
+  }
+
+  /* Reduced motion for mobile performance */
+  @media (prefers-reduced-motion: reduce) {
+    .motion-reduce {
+      @apply transition-none;
+    }
+    
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
   .will-change-transform {

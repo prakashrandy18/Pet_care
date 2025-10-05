@@ -34,7 +34,8 @@ const Footer: React.FC = () => {
               <a href="/" className="flex items-center gap-3 mb-4">
                 <img 
                   src="/images/ps-pet-care-logo.jpg" 
-                  alt="PS Pet Care Logo" 
+                  alt="PS Pet Care logo - Professional pet daycare and boarding services in Chennai, Tamil Nadu" 
+                  title="PS Pet Care - Chennai's Trusted Pet Daycare"
                   className="w-12 h-12 object-cover rounded-full"
                 />
                 <span className="text-2xl font-display font-bold text-gray-900 dark:text-white">

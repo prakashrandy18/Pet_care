@@ -1,5 +1,6 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro'
+import Breadcrumb from '../components/common/Breadcrumb.astro'
 import { SERVICES, CERTIFICATIONS } from '../config/constants'
 import { pageSEO, generateServiceSchema } from '../config/seo'
 
@@ -9,6 +10,11 @@ const schema = SERVICES.map(service => generateServiceSchema({
   description: service.description,
   price: service.price
 }))
+
+const breadcrumbItems = [
+  { label: 'Home', href: '/' },
+  { label: 'Services' }
+]
 ---
 
 <PageLayout
@@ -16,6 +22,13 @@ const schema = SERVICES.map(service => generateServiceSchema({
   description={pageSEO.services.description}
   schema={schema}
 >
+  <!-- Breadcrumb -->
+  <div class="bg-gray-50 dark:bg-gray-900 pt-20">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumb items={breadcrumbItems} />
+    </div>
+  </div>
+
   <!-- Hero Section -->
   <section class="relative py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-primary-50 via-white to-accent-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 overflow-hidden">
     <!-- Decorative background elements -->
@@ -37,7 +50,9 @@ const schema = SERVICES.map(service => generateServiceSchema({
         </h1>
         
         <p class="text-lg sm:text-xl lg:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-          Trusted daycare and boarding services designed to keep your beloved pets safe, comfortable, and exceptionally well-cared for in a loving environment.
+          Trusted daycare and boarding services designed to keep your beloved pets safe, comfortable, and exceptionally well-cared for in a loving environment. 
+          <a href="/about" class="text-primary-600 dark:text-primary-400 hover:underline">Learn more about our experience</a> 
+          or <a href="/contact" class="text-primary-600 dark:text-primary-400 hover:underline">get in touch</a> to discuss your pet's needs.
         </p>
         
         <!-- Quick navigation to services -->
@@ -150,7 +165,7 @@ const schema = SERVICES.map(service => generateServiceSchema({
                   <div class="relative aspect-[4/3] rounded-3xl overflow-hidden bg-gradient-to-br from-primary-50 to-accent-50 dark:from-primary-900/50 dark:to-accent-900/50 shadow-2xl">
                     {/* Main service visual */}
                     <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary-100/80 to-accent-100/80 dark:from-primary-800/80 dark:to-accent-800/80">
-                      <span class="text-8xl sm:text-9xl lg:text-[10rem] opacity-30 transform hover:scale-110 transition-transform duration-500">{service.icon}</span>
+                      <span class="text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] opacity-30 transform hover:scale-110 transition-transform duration-500">{service.icon}</span>
                     </div>
                     
                     {/* Subtle decorative elements */}
@@ -210,7 +225,7 @@ const schema = SERVICES.map(service => generateServiceSchema({
                         href="https://forms.gle/YJ4bxyNAo1SmQ92v9"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-2xl font-semibold text-lg hover:from-primary-600 hover:to-primary-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                        class="group inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-2xl font-semibold text-base sm:text-lg hover:from-primary-600 hover:to-primary-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 min-h-[48px] w-full sm:w-auto touch-manipulation"
                       >
                         Book This Service
                         <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -220,7 +235,7 @@ const schema = SERVICES.map(service => generateServiceSchema({
                       
                       <a
                         href="/contact"
-                        class="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-white dark:bg-gray-800 text-primary-600 dark:text-primary-400 border-2 border-primary-200 dark:border-primary-700 rounded-2xl font-semibold text-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-300 shadow-md hover:shadow-lg"
+                        class="group inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-4 bg-white dark:bg-gray-800 text-primary-600 dark:text-primary-400 border-2 border-primary-200 dark:border-primary-700 rounded-2xl font-semibold text-base sm:text-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-300 shadow-md hover:shadow-lg min-h-[48px] w-full sm:w-auto touch-manipulation"
                       >
                         Learn More
                         <svg class="w-5 h-5 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">

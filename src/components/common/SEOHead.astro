@@ -33,6 +33,7 @@ const fullImage = image.startsWith('http') ? image : new URL(image, Astro.site |
 <title>{fullTitle}</title>
 <meta name="title" content={fullTitle} />
 <meta name="description" content={description} />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <link rel="canonical" href={canonical} />
 
 <!-- Robots -->
@@ -72,11 +73,23 @@ const fullImage = image.startsWith('http') ? image : new URL(image, Astro.site |
 <meta name="msapplication-TileColor" content="#3b82f6" />
 <meta name="format-detection" content="telephone=no" />
 
+<!-- Local Business SEO -->
+<meta name="keywords" content="pet daycare Chennai, pet boarding Chennai, pet care Avadi, dog daycare Chennai, cat boarding Tamil Nadu, home based pet care" />
+<meta name="language" content="en-IN" />
+<meta name="distribution" content="local" />
+<meta name="rating" content="general" />
+
+<!-- Business Information -->
+<meta name="business:contact_data:locality" content="Chennai" />
+<meta name="business:contact_data:region" content="Tamil Nadu" />
+<meta name="business:contact_data:country_name" content="India" />
+<meta name="business:contact_data:phone_number" content={siteConfig.phone} />
+
 <!-- Geo tags for local SEO -->
-<meta name="geo.region" content="US-{siteConfig.address.state}" />
+<meta name="geo.region" content="IN-TN" />
 <meta name="geo.placename" content={siteConfig.address.city} />
-<meta name="geo.position" content="40.7128;-74.0060" />
-<meta name="ICBM" content="40.7128, -74.0060" />
+<meta name="geo.position" content="13.1206892;80.1013128" />
+<meta name="ICBM" content="13.1206892, 80.1013128" />
 
 <!-- Contact information -->
 <meta property="og:phone_number" content={siteConfig.phone} />
@@ -85,3 +98,37 @@ const fullImage = image.startsWith('http') ? image : new URL(image, Astro.site |
 <meta property="og:region" content={siteConfig.address.state} />
 <meta property="og:postal-code" content={siteConfig.address.zip} />
 <meta property="og:country-name" content={siteConfig.address.country} />
+
+<!-- Performance Optimization -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="dns-prefetch" href="//forms.gle">
+
+<!-- Preload critical resources -->
+<link rel="preload" href="/images/hero/happy-pets.jpg" as="image" type="image/jpeg">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fredoka:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fredoka:wght@400;600&display=swap"></noscript>
+
+<!-- Font display optimization -->
+<style>
+  @font-face {
+    font-family: 'Inter';
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Fredoka';
+    font-display: swap;
+  }
+</style>
+
+<!-- Google Analytics (Add your GA4 tracking ID when ready) -->
+<!-- 
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'GA_TRACKING_ID');
+</script>
+-->

@@ -1,25 +1,41 @@
 {
-  "name": "Ps Pet Care",
-  "short_name": "Ps Pet Care",
-  "description": "Premium pet daycare service offering professional care, grooming, and training for your beloved pets.",
+  "name": "PS Pet Care - Chennai Pet Daycare & Boarding",
+  "short_name": "PS Pet Care",
+  "description": "Professional pet daycare and boarding services in Chennai. Home-based care for dogs, cats & birds.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#3b82f6",
-  "orientation": "portrait",
+  "theme_color": "#a855f7",
+  "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/android-chrome-192x192.png",
+      "src": "/images/ps-pet-care-logo.jpg",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/jpeg",
+      "purpose": "any maskable"
     },
     {
-      "src": "/android-chrome-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "src": "/images/ps-pet-care-logo.jpg",
+      "sizes": "512x512", 
+      "type": "image/jpeg",
+      "purpose": "any maskable"
     }
   ],
   "categories": ["lifestyle", "pets"],
-  "lang": "en-US",
-  "dir": "ltr"
+  "lang": "en-IN",
+  "dir": "ltr",
+  "shortcuts": [
+    {
+      "name": "Book Pet Service",
+      "description": "Quick booking for pet daycare or boarding",
+      "url": "/contact",
+      "icons": [
+        {
+          "src": "/images/ps-pet-care-logo.jpg",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
 }

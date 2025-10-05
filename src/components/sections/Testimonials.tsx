@@ -3,43 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { TESTIMONIALS } from '../../config/constants'
 
 const Testimonials: React.FC = () => {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [direction, setDirection] = useState(0)
-
-  const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1
-    },
-    exit: (direction: number) => ({
-      zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0
-    })
-  }
-
-  const swipeConfidenceThreshold = 10000
-  const swipePower = (offset: number, velocity: number) => {
-    return Math.abs(offset) * velocity
-  }
-
-  const paginate = (newDirection: number) => {
-    setDirection(newDirection)
-    setCurrentIndex((prevIndex) => {
-      let nextIndex = prevIndex + newDirection
-      if (nextIndex < 0) nextIndex = TESTIMONIALS.length - 1
-      if (nextIndex >= TESTIMONIALS.length) nextIndex = 0
-      return nextIndex
-    })
-  }
 
   return (
-    <section id="testimonials" className="section-padding bg-gray-50 dark:bg-gray-900 overflow-hidden">
+    <section 
+      id="testimonials" 
+      className="section-padding bg-gray-50 dark:bg-gray-900 overflow-hidden"
+      role="region"
+      aria-labelledby="testimonials-heading"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -60,7 +31,7 @@ const Testimonials: React.FC = () => {
             <span>Testimonials</span>
           </motion.div>
           
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-gray-900 dark:text-white mb-4">
+          <h2 id="testimonials-heading" className="text-4xl md:text-5xl font-display font-bold text-gray-900 dark:text-white mb-4">
             What Pet Parents Say
           </h2>
           
@@ -69,149 +40,51 @@ const Testimonials: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Testimonials Carousel */}
-        <div className="relative max-w-4xl mx-auto">
-          <div className="relative h-[400px] md:h-[350px]">
-            <AnimatePresence initial={false} custom={direction}>
-              <motion.div
-                key={currentIndex}
-                custom={direction}
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{
-                  x: { type: "spring", stiffness: 300, damping: 30 },
-                  opacity: { duration: 0.2 }
-                }}
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={1}
-                onDragEnd={(e, { offset, velocity }) => {
-                  const swipe = swipePower(offset.x, velocity.x)
-
-                  if (swipe < -swipeConfidenceThreshold) {
-                    paginate(1)
-                  } else if (swipe > swipeConfidenceThreshold) {
-                    paginate(-1)
-                  }
-                }}
-                className="absolute inset-0"
-              >
-                <div className="h-full bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8 md:p-12">
-                  {/* Quote Icon */}
-                  <motion.div
-                    initial={{ scale: 0, rotate: -180 }}
-                    animate={{ scale: 1, rotate: 0 }}
-                    transition={{ delay: 0.2, type: "spring" }}
-                    className="absolute -top-6 -left-6 w-16 h-16 bg-gradient-to-br from-primary-500 to-accent-500 rounded-2xl flex items-center justify-center text-white text-3xl shadow-lg"
+        {/* Testimonials Static Grid - Performance Optimized */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto min-h-[300px]">
+          {TESTIMONIALS.slice(0, 3).map((testimonial, index) => (
+            <div key={testimonial.id} className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 h-full">
+              {/* Rating Stars */}
+              <div className="flex gap-1 mb-4">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <svg
+                    key={i}
+                    className="w-5 h-5 text-yellow-500"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
                   >
-                    "
-                  </motion.div>
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
 
-                  {/* Rating Stars */}
-                  <div className="flex gap-1 mb-6">
-                    {[...Array(TESTIMONIALS[currentIndex].rating)].map((_, i) => (
-                      <motion.svg
-                        key={i}
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.3 + i * 0.1 }}
-                        className="w-6 h-6 text-yellow-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </motion.svg>
-                    ))}
-                  </div>
+              {/* Testimonial Text */}
+              <blockquote className="text-gray-700 dark:text-gray-300 mb-6 italic">
+                "{testimonial.text}"
+              </blockquote>
 
-                  {/* Testimonial Text */}
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.4 }}
-                    className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8 italic"
-                  >
-                    "{TESTIMONIALS[currentIndex].text}"
-                  </motion.p>
-
-                  {/* Author Info */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 }}
-                    className="flex items-center gap-4"
-                  >
-                    <div className="w-16 h-16 bg-gradient-to-br from-primary-200 to-accent-200 dark:from-primary-800 dark:to-accent-800 rounded-full flex items-center justify-center">
-                      <span className="text-2xl">
-                        {TESTIMONIALS[currentIndex].petType.includes('Dog') ? '🐕' : '🐈'}
-                      </span>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-gray-900 dark:text-white">
-                        {TESTIMONIALS[currentIndex].author}
-                      </p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        Pet Parent of {TESTIMONIALS[currentIndex].petName} ({TESTIMONIALS[currentIndex].petType})
-                      </p>
-                    </div>
-                  </motion.div>
-
-                  {/* Decorative Paw Print */}
-                  <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="absolute bottom-8 right-8 text-6xl opacity-5"
-                  >
-                    🐾
-                  </motion.div>
+              {/* Author Info */}
+              <footer className="flex items-center gap-3 mt-auto">
+                <img
+                  src={testimonial.image}
+                  alt={`${testimonial.author} - PS Pet Care customer`}
+                  className="w-12 h-12 rounded-full object-cover"
+                  width="48"
+                  height="48"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div>
+                  <cite className="font-semibold text-gray-900 dark:text-white not-italic">
+                    {testimonial.author}
+                  </cite>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Pet Parent of {testimonial.petName} ({testimonial.petType})
+                  </p>
                 </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Navigation Buttons */}
-          <button
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 bg-white dark:bg-gray-800 w-12 h-12 rounded-full shadow-lg flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors z-10"
-            onClick={() => paginate(-1)}
-            aria-label="Previous testimonial"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          
-          <button
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 bg-white dark:bg-gray-800 w-12 h-12 rounded-full shadow-lg flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors z-10"
-            onClick={() => paginate(1)}
-            aria-label="Next testimonial"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-
-          {/* Dots Indicator */}
-          <div className="flex justify-center gap-2 mt-8">
-            {TESTIMONIALS.map((_, index) => (
-              <motion.button
-                key={index}
-                onClick={() => {
-                  setDirection(index > currentIndex ? 1 : -1)
-                  setCurrentIndex(index)
-                }}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex
-                    ? 'w-8 bg-primary-500'
-                    : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
-                }`}
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.8 }}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
-            ))}
-          </div>
+              </footer>
+            </div>
+          ))}
         </div>
 
         {/* Call to Action */}
@@ -226,12 +99,14 @@ const Testimonials: React.FC = () => {
             Join hundreds of happy pet parents!
           </p>
           <motion.a
-            href="/contact#booking"
+            href="https://forms.gle/YJ4bxyNAo1SmQ92v9"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 text-white rounded-lg font-medium hover:bg-primary-600 transition-all duration-200 shadow-lg hover:shadow-xl"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Book Your Pet's Stay
+            Book Pet Daycare Today
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>

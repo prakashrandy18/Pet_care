@@ -13,14 +13,14 @@ const Gallery: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null)
 
   const galleryImages: GalleryImage[] = [
-    { id: 1, src: 'https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=500&h=500&fit=crop&crop=faces', alt: 'Happy dog enjoying daycare', category: 'dogs' },
-    { id: 2, src: 'https://images.unsplash.com/photo-1571566882372-1598d88abd90?w=500&h=500&fit=crop&crop=faces', alt: 'Cat relaxing comfortably', category: 'cats' },
-    { id: 3, src: 'https://images.unsplash.com/photo-1605197788044-5a85b3e9eb5b?w=500&h=500&fit=crop&crop=faces', alt: 'Colorful parrot in care', category: 'grooming' },
-    { id: 4, src: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=500&h=500&fit=crop&crop=faces', alt: 'Multiple pets socializing', category: 'playing' },
-    { id: 5, src: 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=500&h=500&fit=crop&crop=faces', alt: 'Dog having fun at daycare', category: 'dogs' },
-    { id: 6, src: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500&h=500&fit=crop&crop=faces', alt: 'Beautiful cat portrait', category: 'cats' },
-    { id: 7, src: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=500&fit=crop&crop=faces', alt: 'Dog getting groomed', category: 'grooming' },
-    { id: 8, src: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=500&h=500&fit=crop&crop=faces', alt: 'Playful pets together', category: 'playing' },
+    { id: 1, src: 'https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=500&h=500&fit=crop&crop=faces', alt: 'Happy golden retriever enjoying professional daycare services at PS Pet Care Chennai facility', category: 'dogs' },
+    { id: 2, src: 'https://images.unsplash.com/photo-1571566882372-1598d88abd90?w=500&h=500&fit=crop&crop=faces', alt: 'Relaxed cat receiving personal attention during boarding at PS Pet Care Avadi', category: 'cats' },
+    { id: 3, src: 'https://images.unsplash.com/photo-1605197788044-5a85b3e9eb5b?w=500&h=500&fit=crop&crop=faces', alt: 'Colorful parrot receiving specialized care and attention at PS Pet Care facility', category: 'grooming' },
+    { id: 4, src: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=500&h=500&fit=crop&crop=faces', alt: 'Multiple pets socializing safely in supervised play area at PS Pet Care Chennai', category: 'playing' },
+    { id: 5, src: 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=500&h=500&fit=crop&crop=faces', alt: 'Energetic dog having fun during daycare playtime at PS Pet Care Avadi facility', category: 'dogs' },
+    { id: 6, src: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500&h=500&fit=crop&crop=faces', alt: 'Beautiful cat portrait showcasing the quality care provided at PS Pet Care Chennai', category: 'cats' },
+    { id: 7, src: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=500&fit=crop&crop=faces', alt: 'Dog receiving professional grooming and care services at PS Pet Care facility', category: 'grooming' },
+    { id: 8, src: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=500&h=500&fit=crop&crop=faces', alt: 'Multiple playful pets enjoying interactive activities together at PS Pet Care Chennai', category: 'playing' },
   ]
 
   const categories = [
@@ -115,7 +115,10 @@ const Gallery: React.FC = () => {
                   src={image.src}
                   alt={image.alt}
                   className="absolute inset-0 w-full h-full object-cover"
+                  width="500"
+                  height="500"
                   loading="lazy"
+                  decoding="async"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';

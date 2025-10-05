@@ -61,24 +61,24 @@ export const defaultSEO = {
 
 export const pageSEO = {
   home: {
-    title: "Premium Pet Daycare, Grooming & Boarding Services",
+    title: "Pet Daycare Chennai | PS Pet Care Avadi",
     description:
-      "Ps Pet Care offers professional pet daycare, grooming, boarding, and training services. Your pet's happiness and safety is our top priority. Book today!",
+      "Professional pet daycare & boarding in Chennai. Home-based care from ₹500/day. 25+ years experience. WhatsApp updates daily. Book today!",
   },
   services: {
-    title: "Our Pet Care Services",
+    title: "Chennai Pet Services | Daycare & Boarding",
     description:
-      "Explore our comprehensive pet care services including daycare, grooming, boarding, training, dog walking, and pet taxi. Professional care at affordable prices.",
+      "Pet daycare & boarding services in Chennai, Tamil Nadu. Starting ₹500/day. Dogs, cats & birds welcome. Contact PS Pet Care Avadi now!",
   },
   about: {
-    title: "About Us - Meet Our Team",
+    title: "About PS Pet Care | 25+ Years Chennai Experience",
     description:
-      "Learn about Ps Pet Care's experienced team and our mission to provide the best care for your pets. Certified professionals dedicated to pet wellness.",
+      "PS Pet Care: 25+ years Chennai pet care experience. Home-based services in Avadi. Personal attention for every pet. Trusted by families.",
   },
   contact: {
-    title: "Contact Us - Book Your Pet Care Service",
+    title: "Contact PS Pet Care Chennai | Book Pet Daycare",
     description:
-      "Get in touch with Ps Pet Care. Book daycare, grooming, or boarding services. Available 7 days a week. Call, WhatsApp, or visit us today!",
+      "Contact PS Pet Care Chennai for pet daycare & boarding. WhatsApp +91 99622 03484. Located Avadi, Tamil Nadu. Book consultation today!",
   },
   blog: {
     title: "Pet Care Blog - Tips, Advice & News",
@@ -112,8 +112,8 @@ export const structuredData = {
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 40.7128,
-      longitude: -74.006,
+      latitude: 13.1206892,
+      longitude: 80.1013128,
     },
     telephone: siteConfig.phone,
     email: siteConfig.email,
@@ -122,7 +122,7 @@ export const structuredData = {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
         opens: "07:00",
-        closes: "19:00",
+        closes: "20:00",
       },
       {
         "@type": "OpeningHoursSpecification",
@@ -139,7 +139,7 @@ export const structuredData = {
     ],
     priceRange: "$$",
     paymentAccepted: ["Cash", "Credit Card", "Debit Card"],
-    currenciesAccepted: "USD",
+    currenciesAccepted: "INR",
     areaServed: {
       "@type": "City",
       name: siteConfig.address.city,
@@ -169,15 +169,15 @@ export const structuredData = {
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 40.7128,
-      longitude: -74.006,
+      latitude: 13.1206892,
+      longitude: 80.1013128,
     },
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
         opens: "07:00",
-        closes: "19:00",
+        closes: "20:00",
       },
       {
         "@type": "OpeningHoursSpecification",
@@ -249,13 +249,98 @@ export function generateServiceSchema(service: {
     offers: {
       "@type": "Offer",
       price: service.price.from,
-      priceCurrency: "USD",
+      priceCurrency: "INR",
       priceSpecification: {
         "@type": "UnitPriceSpecification",
         price: service.price.from,
-        priceCurrency: "USD",
+        priceCurrency: "INR",
         unitCode: service.price.unit,
       },
     },
+  };
+}
+
+export function generateReviewSchema(testimonials: Array<{
+  author: string;
+  rating: number;
+  text: string;
+  petType: string;
+}>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: siteConfig.name,
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5",
+      reviewCount: testimonials.length,
+      bestRating: "5",
+      worstRating: "5"
+    },
+    review: testimonials.map((testimonial) => ({
+      "@type": "Review",
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: testimonial.rating,
+        bestRating: "5"
+      },
+      author: {
+        "@type": "Person",
+        name: testimonial.author
+      },
+      reviewBody: testimonial.text,
+      datePublished: new Date().toISOString().split('T')[0]
+    }))
+  };
+}
+
+export function generatePetCareServiceSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "PetStore",
+    name: siteConfig.name,
+    description: "Professional pet daycare and boarding services in Chennai",
+    url: siteConfig.url,
+    telephone: siteConfig.phone,
+    email: siteConfig.email,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: siteConfig.address.street,
+      addressLocality: siteConfig.address.city,
+      addressRegion: siteConfig.address.state,
+      postalCode: siteConfig.address.zip,
+      addressCountry: siteConfig.address.country,
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 13.1206892,
+      longitude: 80.1013128,
+    },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Pet Care Services",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Pet Daycare Services",
+            description: "Professional daycare for dogs, cats, and birds"
+          },
+          price: "500",
+          priceCurrency: "INR"
+        },
+        {
+          "@type": "Offer", 
+          itemOffered: {
+            "@type": "Service",
+            name: "Pet Boarding Services",
+            description: "Overnight boarding with 24/7 care"
+          },
+          price: "800",
+          priceCurrency: "INR"
+        }
+      ]
+    }
   };
 }

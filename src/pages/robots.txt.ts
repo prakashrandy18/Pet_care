@@ -7,33 +7,41 @@ export const GET: APIRoute = ({ site }) => {
   const robotsTxt = `
 User-agent: *
 Allow: /
-
-Sitemap: ${siteUrl}/sitemap-index.xml
-
-# Crawl-delay for bots that support it
-User-agent: *
 Crawl-delay: 1
 
-# Disallow access to admin or private areas (if any)
-User-agent: *
-Disallow: /api/
-Disallow: /admin/
-Disallow: /_astro/
+# Sitemap locations
+Sitemap: ${siteUrl}/sitemap-index.xml
 
-# Allow search engines to access everything else
+# Disallow admin and development areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_astro/
+Disallow: /*.json$
+Disallow: /manifest.json
+
+# Allow important assets
+Allow: /images/
+Allow: /favicon.ico
+Allow: /favicon.svg
+
+# Specific bot configurations
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Slurp
 Allow: /
+Crawl-delay: 2
 
 User-agent: DuckDuckBot
 Allow: /
+Crawl-delay: 1
 
-# Block bad bots
+# Block resource-heavy bots
 User-agent: SemrushBot
 Disallow: /
 
@@ -42,6 +50,21 @@ Disallow: /
 
 User-agent: MJ12bot
 Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+# Mobile crawling
+User-agent: Googlebot-Mobile
+Allow: /
+
+# Image crawling
+User-agent: Googlebot-Image
+Allow: /images/
+Disallow: /admin/
 `.trim()
 
   return new Response(robotsTxt, {
