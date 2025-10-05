@@ -19,11 +19,11 @@ import { siteConfig } from '../config/theme'
         </div>
         
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-gray-900 dark:text-white mb-6">
-          Your Pet's <span class="text-gradient">Second Home</span>
+          More Than Care, <span class="text-gradient">It's Love</span>
         </h1>
         
         <p class="text-xl text-gray-600 dark:text-gray-400">
-          Since 2008, we've been providing exceptional care for pets and peace of mind for their parents.
+          25+ years of experience caring for dogs, cats, and birds - now bringing that dedication to our new facility.
         </p>
       </div>
     </div>
@@ -40,32 +40,32 @@ import { siteConfig } from '../config/theme'
           
           <div class="space-y-4 text-gray-600 dark:text-gray-400">
             <p class="text-lg">
-              Ps Pet Care was born from a simple belief: every pet deserves to be treated like family. 
-              Founded by Sarah Johnson, a lifelong animal lover and certified trainer, our facility has 
-              grown from a small daycare to a comprehensive pet care center.
+              What started as caring for neighborhood pets in our home has grown into PS Pet Care. 
+              For over 25 years, we've been looking after dogs, cats, and birds, learning that every 
+              pet has unique needs and deserves individual attention.
             </p>
             
             <p>
-              What started as a passion project in a converted garage has blossomed into a 10,000 square 
-              foot state-of-the-art facility. We've cared for thousands of pets over the years, each one 
-              leaving paw prints on our hearts.
+              We understand the worry of leaving your pet with someone new. That's why we treat every 
+              pet like our own - with patience, understanding, and lots of love. Our experience has 
+              taught us that happy pets come from consistent routines and genuine care.
             </p>
             
             <p>
-              Our mission remains unchanged: to provide a safe, fun, and nurturing environment where pets 
-              can thrive while their parents are away. We believe in personalized care, continuous learning, 
-              and building lasting relationships with both pets and their families.
+              Now, we're excited to bring our years of home pet care experience to a dedicated space 
+              where your pets can feel comfortable and safe. Whether it's daytime care while you work 
+              or overnight stays when you travel, we're here to help.
             </p>
           </div>
           
           <div class="mt-8 grid grid-cols-2 gap-6">
             <div class="text-center p-6 bg-primary-50 dark:bg-primary-900/20 rounded-2xl">
-              <div class="text-4xl font-bold text-primary-600 dark:text-primary-400 mb-2">15+</div>
-              <div class="text-sm text-gray-600 dark:text-gray-400">Years of Service</div>
+              <div class="text-4xl font-bold text-primary-600 dark:text-primary-400 mb-2">25+</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400">Years Experience</div>
             </div>
             <div class="text-center p-6 bg-secondary-50 dark:bg-secondary-900/20 rounded-2xl">
-              <div class="text-4xl font-bold text-secondary-600 dark:text-secondary-400 mb-2">5000+</div>
-              <div class="text-sm text-gray-600 dark:text-gray-400">Happy Pets</div>
+              <div class="text-4xl font-bold text-secondary-600 dark:text-secondary-400 mb-2">3</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400">Types of Pets</div>
             </div>
           </div>
         </div>
@@ -131,133 +131,128 @@ import { siteConfig } from '../config/theme'
     </div>
   </section>
 
-  <!-- Team Section -->
-  <section id="team" class="section-padding">
+  <!-- Personal Touch Section -->
+  <section id="experience" class="section-padding">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-3xl md:text-4xl font-display font-bold text-gray-900 dark:text-white mb-4">
-          Meet Our <span class="text-gradient">Amazing Team</span>
+          Personal Care with <span class="text-gradient">Professional Standards</span>
         </h2>
         <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-          Dedicated professionals who make Ps Pet Care a special place for your pets
+          Experience and dedication that makes all the difference for your beloved pets
         </p>
       </div>
       
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {TEAM_MEMBERS.map((member) => (
-          <div class="group relative">
-            <div class="relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-soft hover:shadow-xl transition-all duration-300">
-              {/* Team member image placeholder */}
-              <div class="aspect-square bg-gradient-to-br from-primary-100 to-accent-100 dark:from-primary-900 dark:to-accent-900">
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <span class="text-6xl opacity-50">👤</span>
-                </div>
-              </div>
-              
-              {/* Team member info */}
-              <div class="p-6">
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-1">
-                  {member.name}
-                </h3>
-                <p class="text-primary-600 dark:text-primary-400 font-medium mb-3">
-                  {member.role}
-                </p>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                  {member.bio}
-                </p>
-                
-                {/* Certifications */}
-                <div class="space-y-1">
-                  {member.certifications.map((cert) => (
-                    <div class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-500">
-                      <svg class="w-3 h-3 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                      </svg>
-                      <span>{cert}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              
-              {/* Hover effect */}
-              <div class="absolute inset-0 bg-gradient-to-t from-primary-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-            </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-soft p-8 text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-primary-400 to-accent-400 rounded-2xl flex items-center justify-center text-3xl text-white mb-6 mx-auto">
+            ⭐
           </div>
-        ))}
+          <h3 class="text-xl font-display font-bold text-gray-900 dark:text-white mb-3">
+            25+ Years Experience
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Decades of experience caring for pets of all sizes and temperaments
+          </p>
+        </div>
+        
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-soft p-8 text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-primary-400 to-accent-400 rounded-2xl flex items-center justify-center text-3xl text-white mb-6 mx-auto">
+            🏠
+          </div>
+          <h3 class="text-xl font-display font-bold text-gray-900 dark:text-white mb-3">
+            Home-Based Care
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Comfortable, familiar environment that feels like a second home for your pet
+          </p>
+        </div>
+        
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-soft p-8 text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-primary-400 to-accent-400 rounded-2xl flex items-center justify-center text-3xl text-white mb-6 mx-auto">
+            ❤️
+          </div>
+          <h3 class="text-xl font-display font-bold text-gray-900 dark:text-white mb-3">
+            Individual Attention
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Each pet receives personalized care based on their unique needs and personality
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Facility Section -->
+  <!-- Care Features Section -->
   <section class="section-padding bg-gray-50 dark:bg-gray-900">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-3xl md:text-4xl font-display font-bold text-gray-900 dark:text-white mb-4">
-          Our State-of-the-Art Facility
+          What Makes Our Care Special
         </h2>
         <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-          10,000 square feet of specially designed space for your pets to play, rest, and be pampered
+          Home-based pet care with all the comfort and safety your pet deserves
         </p>
       </div>
       
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-soft">
-          <div class="text-4xl mb-4">🏃</div>
+          <div class="text-4xl mb-4">🏠</div>
           <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-            Indoor Play Areas
+            Cozy Home Environment
           </h3>
           <p class="text-gray-600 dark:text-gray-400">
-            Climate-controlled spaces with specialized flooring for safe play all year round
+            Safe, comfortable indoor spaces where pets feel relaxed and at ease
           </p>
         </div>
         
         <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-soft">
-          <div class="text-4xl mb-4">🌳</div>
+          <div class="text-4xl mb-4">🌿</div>
           <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-            Outdoor Gardens
+            Secure Play Areas
           </h3>
           <p class="text-gray-600 dark:text-gray-400">
-            Secure, landscaped outdoor areas for fresh air and natural exploration
+            Protected outdoor spaces for supervised play and exercise
           </p>
         </div>
         
         <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-soft">
           <div class="text-4xl mb-4">🛏️</div>
           <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-            Luxury Suites
+            Comfortable Rest Areas
           </h3>
           <p class="text-gray-600 dark:text-gray-400">
-            Private, comfortable suites for overnight stays with 24/7 monitoring
+            Quiet, cozy spaces for naps and overnight stays with constant supervision
           </p>
         </div>
         
         <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-soft">
-          <div class="text-4xl mb-4">🚿</div>
+          <div class="text-4xl mb-4">🍽️</div>
           <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-            Grooming Spa
+            Personalized Feeding
           </h3>
           <p class="text-gray-600 dark:text-gray-400">
-            Full-service grooming facility with professional equipment and products
+            Individual meal schedules and dietary requirements carefully followed
           </p>
         </div>
         
         <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-soft">
-          <div class="text-4xl mb-4">📹</div>
+          <div class="text-4xl mb-4">📱</div>
           <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-            HD Cameras
+            WhatsApp Updates
           </h3>
           <p class="text-gray-600 dark:text-gray-400">
-            Live camera feeds so you can check on your pet anytime, anywhere
+            Regular photos and updates throughout the day to keep you connected
           </p>
         </div>
         
         <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-soft">
-          <div class="text-4xl mb-4">🏥</div>
+          <div class="text-4xl mb-4">🚨</div>
           <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-            Medical Room
+            Emergency Preparedness
           </h3>
           <p class="text-gray-600 dark:text-gray-400">
-            On-site medical facility for routine care and emergency response
+            Quick access to veterinary care and emergency protocols in place
           </p>
         </div>
       </div>
@@ -268,18 +263,18 @@ import { siteConfig } from '../config/theme'
   <section class="section-padding bg-gradient-to-r from-secondary-500 to-primary-500">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-4">
-        Come Visit Us Today!
+        Ready to Give Your Pet the Best Care?
       </h2>
       <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-        Schedule a free tour of our facility and meet our team. We'd love to show you around!
+        Contact us to discuss your pet's needs and schedule their first stay with us!
       </p>
       <a
         href="/contact"
         class="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary-600 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-all duration-200 shadow-xl hover:shadow-2xl"
       >
-        Schedule a Tour
+        Get in Touch
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
       </a>
     </div>

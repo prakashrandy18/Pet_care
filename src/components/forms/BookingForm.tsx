@@ -362,7 +362,7 @@ const BookingForm: React.FC = () => {
                     value={bookingData.ownerPhone}
                     onChange={handleChange}
                     className={`form-input ${errors.ownerPhone ? 'border-red-500' : ''}`}
-                    placeholder="(555) 123-4567"
+                    placeholder="9962203484"
                   />
                   {errors.ownerPhone && <p className="form-error">{errors.ownerPhone}</p>}
                 </div>

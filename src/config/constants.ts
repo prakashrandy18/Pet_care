@@ -2,18 +2,18 @@ export const SERVICES = [
   {
     id: 'daycare',
     title: 'Pet Daycare',
-    description: 'Safe and fun environment for your pets during the day. Perfect for working pet parents.',
+    description: 'Caring for your pets while you\'re at work or away for the day.',
     icon: '🏠',
-    features: ['Supervised playtime', 'Socialization with other pets', 'Rest areas', 'Fresh water & meals', 'Indoor & outdoor play areas', 'Live updates'],
+    features: ['Daytime care', 'Regular feeding', 'Comfortable rest areas', 'Personal attention', 'Safe environment', 'WhatsApp updates'],
     price: { from: 500, unit: 'day' },
     image: '/images/services/daycare.jpg'
   },
   {
     id: 'boarding',
     title: 'Pet Boarding',
-    description: 'Comfortable stays from overnight to monthly. Your pet\'s home away from home.',
+    description: 'A safe place for your pets to stay when you travel or need overnight care.',
     icon: '🛏️',
-    features: ['Private rooms', '24/7 supervision', 'Daily exercise & playtime', 'Video updates', 'Customized meal plans', 'Emergency vet support'],
+    features: ['Overnight stays', 'Round-the-clock care', 'Regular meals', 'Comfortable sleeping areas', 'Daily updates', 'Emergency support'],
     price: { from: 800, unit: 'night' },
     image: '/images/services/boarding.jpg'
   }
@@ -49,30 +49,48 @@ export const TEAM_MEMBERS = [
 export const TESTIMONIALS = [
   {
     id: 1,
-    author: 'Kavitha Krishnan',
-    petName: 'Bruno',
-    petType: 'Golden Retriever',
+    author: 'Akash Ramesh',
+    petName: 'Charlie',
+    petType: 'Beagle',
     rating: 5,
-    text: "Excellent care for Bruno! The team is very professional and loving. I can go to work peacefully knowing Bruno is in safe hands.",
-    image: '/images/testimonials/kavitha.jpg'
+    text: "PS Pet Care has been amazing for Charlie! They understand his beagle energy and give him the perfect balance of play and rest. Very satisfied with their care and WhatsApp updates throughout the day.",
+    image: '/images/testimonials/akash.jpg'
   },
   {
     id: 2,
-    author: 'Arjun Menon',
-    petName: 'Mitthu',
-    petType: 'African Grey Parrot',
+    author: 'Priya Subramanian',
+    petName: 'Kutty',
+    petType: 'Indian Spitz',
     rating: 5,
-    text: "Finding a place that cares for birds was difficult until we found Ps Pet Care. Mitthu loves his time there!",
-    image: '/images/testimonials/arjun.jpg'
+    text: "Kutty loves going to PS Pet Care! They treat him like family. The home-based environment makes such a difference - he's never stressed when I drop him off.",
+    image: '/images/testimonials/priya.jpg'
   },
   {
     id: 3,
-    author: 'Sneha Patel',
-    petName: 'Simba',
+    author: 'Rajesh Kumar',
+    petName: 'Mani',
     petType: 'Persian Cat',
     rating: 5,
-    text: "The boarding facility is excellent! Simba was well taken care of during our vacation. Daily video updates were a blessing!",
-    image: '/images/testimonials/sneha.jpg'
+    text: "I was worried about leaving Mani for 3 days, but PS Pet Care took excellent care of him. Regular updates and photos gave me peace of mind during my business trip.",
+    image: '/images/testimonials/rajesh.jpg'
+  },
+  {
+    id: 4,
+    author: 'Lakshmi Venkatesh',
+    petName: 'Rocky',
+    petType: 'Labrador Mix',
+    rating: 5,
+    text: "Rocky has been going to PS Pet Care for 6 months now. The care is so personal and loving. They really understand each pet's individual needs.",
+    image: '/images/testimonials/lakshmi.jpg'
+  },
+  {
+    id: 5,
+    author: 'Arun Muthu',
+    petName: 'Simba',
+    petType: 'Golden Retriever',
+    rating: 5,
+    text: "Excellent service! Simba gets excited every time we reach their place. The staff is very caring and professional. Highly recommend for pet daycare in Chennai.",
+    image: '/images/testimonials/arun.jpg'
   }
 ] as const
 
@@ -80,7 +98,7 @@ export const FAQ_ITEMS = [
   {
     id: 'requirements',
     question: 'What are the requirements for pet daycare and boarding?',
-    answer: 'All pets must be up-to-date on vaccinations. Dogs need rabies and DHPP, cats need rabies and FVRCP, and birds need a health certificate. Pets should be sociable with other animals.'
+    answer: 'All pets must be up-to-date on vaccinations and have health certificates. We require documentation before admission to ensure the safety of all pets in our care.'
   },
   {
     id: 'hours',
@@ -90,7 +108,7 @@ export const FAQ_ITEMS = [
   {
     id: 'booking',
     question: 'How do I book services?',
-    answer: 'You can book through our website contact form or WhatsApp us at 9962203484. We recommend booking at least 24 hours in advance.'
+    answer: 'Contact us via WhatsApp at 9962203484 or through our website. Advance booking is required.'
   },
   {
     id: 'pricing',
@@ -100,7 +118,7 @@ export const FAQ_ITEMS = [
   {
     id: 'updates',
     question: 'Will I receive updates about my pet?',
-    answer: 'Yes! We send WhatsApp updates with photos and videos throughout the day. You can also call us anytime to check on your pet.'
+    answer: 'Yes, we provide regular updates via WhatsApp to keep you informed about your pet\'s wellbeing.'
   }
 ] as const
 
@@ -113,8 +131,8 @@ export const BLOG_CATEGORIES = [
 ] as const
 
 export const CERTIFICATIONS = [
-  { name: 'Licensed Pet Care', icon: '🏆' },
-  { name: 'Fully Insured', icon: '🛡️' },
-  { name: 'Vet Support', icon: '🏥' },
-  { name: '10+ Years Experience', icon: '⭐' }
+  { name: '25+ Years Experience', icon: '🐾' },
+  { name: 'Dogs, Cats & Birds', icon: '🐕' },
+  { name: 'Home-Like Care', icon: '🏠' },
+  { name: 'Trusted by Neighbors', icon: '❤️' }
 ] as const

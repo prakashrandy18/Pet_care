@@ -41,7 +41,7 @@ const FAQ: React.FC = () => {
           </h2>
           
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Got questions? We've got answers! Here are some of the most common questions we receive.
+            Here are some of the most common questions we receive.
           </p>
         </motion.div>
 

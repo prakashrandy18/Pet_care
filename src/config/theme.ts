@@ -1,49 +1,49 @@
 export const theme = {
   colors: {
     primary: {
-      50: '#eff8ff',
-      100: '#dbeefe',
-      200: '#bfe3fe',
-      300: '#94d1fc',
-      400: '#61b6f9',
-      500: '#3b82f6',
-      600: '#2570eb',
-      700: '#1d5fd8',
-      800: '#1e4fae',
-      900: '#1e3a8a',
-      950: '#172554'
+      50: '#faf5ff',
+      100: '#f3e8ff',
+      200: '#e9d5ff',
+      300: '#d8b4fe',
+      400: '#c084fc',
+      500: '#a855f7',
+      600: '#9333ea',
+      700: '#7e22ce',
+      800: '#6b21a8',
+      900: '#581c87',
+      950: '#3b0764'
     },
     secondary: {
-      50: '#f0fdf4',
-      100: '#dcfce7',
-      200: '#bbf7d0',
-      300: '#86efac',
-      400: '#4ade80',
-      500: '#22c55e',
-      600: '#16a34a',
-      700: '#15803d',
-      800: '#166534',
-      900: '#14532d',
-      950: '#052e16'
+      50: '#f5f3ff',
+      100: '#ede9fe',
+      200: '#ddd6fe',
+      300: '#c4b5fd',
+      400: '#a78bfa',
+      500: '#8b5cf6',
+      600: '#7c3aed',
+      700: '#6d28d9',
+      800: '#5b21b6',
+      900: '#4c1d95',
+      950: '#2e1065'
     },
     accent: {
-      50: '#fff7ed',
-      100: '#ffedd5',
-      200: '#fed7aa',
-      300: '#fdba74',
-      400: '#fb923c',
-      500: '#f97316',
-      600: '#ea580c',
-      700: '#c2410c',
-      800: '#9a3412',
-      900: '#7c2d12',
-      950: '#451a03'
+      50: '#fdf4ff',
+      100: '#fae8ff',
+      200: '#f5d0fe',
+      300: '#f0abfc',
+      400: '#e879f9',
+      500: '#d946ef',
+      600: '#c026d3',
+      700: '#a21caf',
+      800: '#86198f',
+      900: '#701a75',
+      950: '#4a044e'
     },
     pet: {
-      brown: '#8B4513',
-      golden: '#FFD700',
-      cream: '#FFFDD0',
-      gray: '#808080'
+      purple: '#6b21a8',
+      lavender: '#e9d5ff',
+      light: '#f3e8ff',
+      dark: '#581c87'
     },
     dark: {
       bg: '#0a0a0a',
@@ -142,7 +142,7 @@ export const theme = {
     lg: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
     xl: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
     '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
-    pet: '0 4px 14px 0 rgba(251, 146, 60, 0.25)',
+    pet: '0 4px 14px 0 rgba(168, 85, 247, 0.25)',
     soft: '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
     glow: '0 0 20px rgba(59, 130, 246, 0.5)'
   },
@@ -168,10 +168,10 @@ export const siteConfig = {
   whatsapp: '919962203484',
   email: 'hello@pspetcare.in',
   address: {
-    street: '123 Anna Nagar',
+    street: '3rd street, Kalaingar Nagar, Avadi',
     city: 'Chennai',
     state: 'Tamil Nadu',
-    zip: '600040',
+    zip: '600062',
     country: 'India'
   },
   hours: {
@@ -180,10 +180,10 @@ export const siteConfig = {
     sunday: '9:00 AM - 5:00 PM'
   },
   social: {
-    facebook: 'https://facebook.com/pspetcare',
-    instagram: 'https://instagram.com/pspetcare',
-    twitter: 'https://twitter.com/pspetcare',
-    youtube: 'https://youtube.com/pspetcare'
+    facebook: 'https://pspetcare.in',
+    instagram: 'https://www.instagram.com/ps_pet_care/',
+    twitter: 'https://pspetcare.in',
+    youtube: 'https://pspetcare.in'
   }
 }
 

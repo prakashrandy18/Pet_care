@@ -32,12 +32,12 @@ const Services: React.FC = () => {
           </h2>
           
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Professional daycare and boarding services to keep your pets happy, healthy, and well-cared for.
+            Professional daycare and boarding services with experienced staff and secure facilities.
           </p>
         </motion.div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {SERVICES.map((service, index) => (
             <motion.div
               key={service.id}

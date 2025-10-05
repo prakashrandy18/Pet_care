@@ -94,7 +94,7 @@ const CTA: React.FC = () => {
           >
             Join our pet family today and get <span className="font-bold">20% off</span> your first month!
             <br />
-            Your furry friend deserves the best.
+            Professional care when you need it most.
           </motion.p>
 
           {/* CTA Buttons */}

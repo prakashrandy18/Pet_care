@@ -42,11 +42,20 @@ const Header: React.FC = () => {
               className="flex items-center gap-3 group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={(e) => {
+                // If already on home page, scroll to top instead of reloading
+                if (window.location.pathname === '/') {
+                  e.preventDefault()
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }
+              }}
             >
               <div className="relative">
-                <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full flex items-center justify-center">
-                  <span className="text-2xl" role="img" aria-label="Paw">🐾</span>
-                </div>
+                <img 
+                  src="/images/ps-pet-care-logo.jpg" 
+                  alt="PS Pet Care Logo" 
+                  className="w-10 h-10 object-cover rounded-full"
+                />
                 <motion.div
                   className="absolute inset-0 bg-primary-500/30 rounded-full blur-xl"
                   animate={{ scale: [1, 1.2, 1] }}
@@ -91,7 +100,9 @@ const Header: React.FC = () => {
 
               {/* Book Now Button - Desktop */}
               <motion.a
-                href="/contact#booking"
+                href="https://forms.gle/YJ4bxyNAo1SmQ92v9"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hidden lg:flex items-center gap-2 px-6 py-2.5 bg-primary-500 text-white rounded-lg font-medium hover:bg-primary-600 transition-all duration-200 hover:shadow-lg"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -168,7 +179,9 @@ const Header: React.FC = () => {
               {/* Mobile Menu Footer */}
               <div className="p-4 border-t border-gray-200 dark:border-gray-800 space-y-3">
                 <motion.a
-                  href="/contact#booking"
+                  href="https://forms.gle/YJ4bxyNAo1SmQ92v9"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 w-full px-6 py-3 bg-primary-500 text-white rounded-lg font-medium hover:bg-primary-600 transition-all duration-200"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}

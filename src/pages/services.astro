@@ -146,7 +146,7 @@ const schema = SERVICES.map(service => generateServiceSchema({
             <div id={service.id} class="scroll-mt-20">
               <div class={`grid lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20 items-center ${!isEven ? 'lg:grid-flow-dense' : ''}`}>
                 <!-- Service Image -->
-                <div class={`relative ${!isEven ? 'lg:col-start-2' : ''}`}>
+                <div class={`relative ${!isEven ? 'lg:col-start-2' : ''} mb-12 lg:mb-8 mr-8`}>
                   <div class="relative aspect-[4/3] rounded-3xl overflow-hidden bg-gradient-to-br from-primary-50 to-accent-50 dark:from-primary-900/50 dark:to-accent-900/50 shadow-2xl">
                     {/* Main service visual */}
                     <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary-100/80 to-accent-100/80 dark:from-primary-800/80 dark:to-accent-800/80">
@@ -158,7 +158,7 @@ const schema = SERVICES.map(service => generateServiceSchema({
                     <div class="absolute bottom-6 left-6 w-20 h-20 bg-primary-400/20 rounded-full blur-xl"></div>
                     
                     {/* Enhanced price badge */}
-                    <div class="absolute -bottom-8 -right-8 bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-6 border border-gray-100 dark:border-gray-700">
+                    <div class="absolute bottom-4 right-4 bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-4 border border-gray-100 dark:border-gray-700 z-10">
                       <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-2 font-medium uppercase tracking-wide">Starting from</p>
                       <p class="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary-600 dark:text-primary-400">
                         ₹{service.price.from}
@@ -207,7 +207,9 @@ const schema = SERVICES.map(service => generateServiceSchema({
                     {/* Action buttons */}
                     <div class="flex flex-col sm:flex-row gap-4 pt-4">
                       <a
-                        href="/contact#booking"
+                        href="https://forms.gle/YJ4bxyNAo1SmQ92v9"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         class="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-2xl font-semibold text-lg hover:from-primary-600 hover:to-primary-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                       >
                         Book This Service

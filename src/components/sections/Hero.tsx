@@ -1,5 +1,5 @@
-import React from 'react'
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion";
+import React from "react";
 
 const Hero: React.FC = () => {
   return (
@@ -13,7 +13,7 @@ const Hero: React.FC = () => {
           }}
           transition={{
             rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-            scale: { duration: 5, repeat: Infinity, ease: "easeInOut" }
+            scale: { duration: 5, repeat: Infinity, ease: "easeInOut" },
           }}
           className="absolute -top-20 -left-20 w-96 h-96 bg-primary-200/30 dark:bg-primary-800/20 rounded-full blur-3xl"
         />
@@ -24,11 +24,11 @@ const Hero: React.FC = () => {
           }}
           transition={{
             rotate: { duration: 25, repeat: Infinity, ease: "linear" },
-            scale: { duration: 7, repeat: Infinity, ease: "easeInOut" }
+            scale: { duration: 7, repeat: Infinity, ease: "easeInOut" },
           }}
           className="absolute -bottom-20 -right-20 w-96 h-96 bg-accent-200/30 dark:bg-accent-800/20 rounded-full blur-3xl"
         />
-        
+
         {/* Floating paw prints */}
         {[...Array(5)].map((_, i) => (
           <motion.div
@@ -43,7 +43,7 @@ const Hero: React.FC = () => {
               duration: 10 + i * 2,
               repeat: Infinity,
               delay: i * 2,
-              ease: "linear"
+              ease: "linear",
             }}
             className="absolute bottom-0"
             style={{ left: `${20 + i * 15}%` }}
@@ -61,23 +61,13 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 bg-accent-100 dark:bg-accent-900/30 text-accent-700 dark:text-accent-400 px-4 py-2 rounded-full text-sm font-medium mb-6"
-            >
-              <span className="animate-pulse">🌟</span>
-              <span>Premium Pet Care Services</span>
-            </motion.div>
-
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
               className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-gray-900 dark:text-white mb-6"
             >
-              Where <span className="text-gradient">Pets</span> Feel
+              <span className="text-gradient">Pet Care</span>
               <br />
               <motion.span
                 animate={{
@@ -86,7 +76,7 @@ const Hero: React.FC = () => {
                 transition={{ duration: 5, repeat: Infinity }}
                 className="bg-gradient-to-r from-primary-500 via-accent-500 to-secondary-500 bg-clip-text text-transparent bg-[length:200%_100%]"
               >
-                At Home
+                You Can Trust
               </motion.span>
             </motion.h1>
 
@@ -96,8 +86,8 @@ const Hero: React.FC = () => {
               transition={{ delay: 0.4 }}
               className="text-xl text-gray-600 dark:text-gray-400 mb-8"
             >
-              Professional daycare and boarding services for your beloved pets. 
-              We treat every pet like family!
+              Safe and reliable daycare and boarding services in Chennai. Your
+              pet's wellbeing is our priority.
             </motion.p>
 
             <motion.div
@@ -107,7 +97,9 @@ const Hero: React.FC = () => {
               className="flex flex-col sm:flex-row gap-4 mb-8"
             >
               <motion.a
-                href="/contact#booking"
+                href="https://forms.gle/YJ4bxyNAo1SmQ92v9"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-500 text-white rounded-xl font-semibold text-lg hover:bg-primary-600 transition-all duration-200 shadow-lg hover:shadow-xl group"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -121,7 +113,12 @@ const Hero: React.FC = () => {
                   animate={{ x: [0, 5, 0] }}
                   transition={{ duration: 1, repeat: Infinity }}
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
                 </motion.svg>
               </motion.a>
 
@@ -142,24 +139,7 @@ const Hero: React.FC = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
               className="flex flex-wrap items-center gap-6 text-sm text-gray-600 dark:text-gray-400"
-            >
-              <div className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span>Licensed & Insured</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <span>5.0 Rating (50+ Reviews)</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xl">🏆</span>
-                <span>Trusted Pet Care</span>
-              </div>
-            </motion.div>
+            ></motion.div>
           </motion.div>
 
           {/* Hero Image/Animation */}
@@ -189,7 +169,7 @@ const Hero: React.FC = () => {
                   alt="Happy pets at Ps Pet Care"
                   className="w-full h-full object-cover rounded-full"
                 />
-                
+
                 {/* Animated overlay elements */}
                 <motion.div
                   animate={{
@@ -211,7 +191,9 @@ const Hero: React.FC = () => {
                   className="absolute bottom-4 left-4 bg-white dark:bg-gray-800 px-4 py-2 rounded-full shadow-lg"
                 >
                   <span className="text-2xl mr-2">🐾</span>
-                  <span className="font-semibold text-gray-900 dark:text-white">Happy Pets!</span>
+                  <span className="font-semibold text-gray-900 dark:text-white">
+                    Safe & Secure
+                  </span>
                 </motion.div>
               </div>
 
@@ -248,14 +230,24 @@ const Hero: React.FC = () => {
             className="flex flex-col items-center gap-2 text-gray-400"
           >
             <span className="text-sm">Scroll to explore</span>
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"
+              />
             </svg>
           </motion.div>
         </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

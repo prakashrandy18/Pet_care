@@ -213,7 +213,7 @@ const ContactForm: React.FC = () => {
             value={formData.phone}
             onChange={handleChange}
             className={`form-input ${errors.phone ? 'border-red-500' : ''}`}
-            placeholder="(555) 123-4567"
+            placeholder="9962203484"
           />
           <AnimatePresence>
             {errors.phone && (

@@ -1,7 +1,5 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro'
-import ContactForm from '../components/forms/ContactForm'
-import BookingForm from '../components/forms/BookingForm'
 import { pageSEO } from '../config/seo'
 import { siteConfig } from '../config/theme'
 ---
@@ -122,42 +120,62 @@ import { siteConfig } from '../config/theme'
             </div>
           </div>
 
-          <!-- Emergency Contact -->
-          <div class="bg-red-50 dark:bg-red-900/20 rounded-2xl p-6">
-            <h3 class="text-xl font-semibold text-red-700 dark:text-red-400 mb-2">
-              Emergency Contact
-            </h3>
-            <p class="text-gray-600 dark:text-gray-400 mb-4">
-              For urgent pet care needs outside business hours
-            </p>
-            <a
-              href="tel:+15559119111"
-              class="inline-flex items-center gap-2 text-red-600 dark:text-red-400 font-medium hover:underline"
-            >
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-              (555) 911-9111
-            </a>
-          </div>
         </div>
 
         <!-- Forms Column -->
         <div class="lg:col-span-2 space-y-12">
           <!-- Contact Form -->
-          <div>
-            <h2 class="text-2xl font-display font-bold text-gray-900 dark:text-white mb-6">
-              Send Us a Message
-            </h2>
-            <ContactForm client:load />
+          <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
+            <div class="text-center">
+              <div class="text-5xl mb-4">🐾</div>
+              <h2 class="text-2xl font-display font-bold text-gray-900 dark:text-white mb-4">
+                Send Us a Message
+              </h2>
+              <p class="text-gray-600 dark:text-gray-400 mb-8">
+                Tell us about your pet and how we can help. We'll get back to you within 24 hours!
+              </p>
+              <a
+                href="https://forms.gle/fbJmQ9DtNic2fhcE6"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-8 py-4 bg-primary-500 text-white rounded-xl font-semibold text-lg hover:bg-primary-600 transition-all duration-200 shadow-lg hover:shadow-xl"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                Send Message
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
           </div>
 
           <!-- Booking Form -->
-          <div id="booking">
-            <h2 class="text-2xl font-display font-bold text-gray-900 dark:text-white mb-6">
-              Book a Service
-            </h2>
-            <BookingForm client:visible />
+          <div id="booking" class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
+            <div class="text-center">
+              <div class="text-5xl mb-4">📅</div>
+              <h2 class="text-2xl font-display font-bold text-gray-900 dark:text-white mb-4">
+                Book a Service
+              </h2>
+              <p class="text-gray-600 dark:text-gray-400 mb-8">
+                Ready to book daycare or boarding for your pet? Fill out our booking form and we'll confirm your appointment.
+              </p>
+              <a
+                href="https://forms.gle/YJ4bxyNAo1SmQ92v9"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-8 py-4 bg-green-500 text-white rounded-xl font-semibold text-lg hover:bg-green-600 transition-all duration-200 shadow-lg hover:shadow-xl"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                Book Now
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -176,47 +194,67 @@ import { siteConfig } from '../config/theme'
         </p>
       </div>
       
-      <!-- Map Placeholder -->
-      <div class="relative h-96 bg-gray-200 dark:bg-gray-800 rounded-2xl overflow-hidden">
-        <div class="absolute inset-0 flex items-center justify-center">
-          <div class="text-center">
-            <div class="text-6xl mb-4">📍</div>
-            <p class="text-gray-600 dark:text-gray-400">
-              Interactive map would go here
-            </p>
-          </div>
+      <!-- Google Maps Embed -->
+      <div class="relative h-96 bg-gray-200 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.0746483944943!2d80.1013128!3d13.1206892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a526f8b10000000%3A0x0!2s3rd%20street%2C%20Kalaingar%20Nagar%2C%20Avadi%2C%20Chennai%2C%20Tamil%20Nadu%20600062%2C%20India!5e0!3m2!1sen!2sin!4v1000000000000!5m2!1sen!2sin"
+          width="100%"
+          height="100%"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="PS Pet Care Location - 3rd street, Kalaingar Nagar, Avadi, Chennai"
+          class="rounded-2xl"
+        ></iframe>
+        
+        <!-- Overlay for better accessibility -->
+        <div class="absolute top-4 right-4 bg-white dark:bg-gray-800 px-3 py-2 rounded-lg shadow-md">
+          <a
+            href="https://www.google.com/maps/search/3rd+street,+Kalaingar+Nagar,+Avadi,+Chennai,+Tamil+Nadu+600062,+India"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 text-sm font-medium text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+            Open in Maps
+          </a>
         </div>
       </div>
       
-      <!-- Directions -->
+      <!-- Location Info -->
       <div class="mt-8 grid md:grid-cols-3 gap-6">
         <div class="text-center">
           <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center text-primary-600 dark:text-primary-400 text-2xl mx-auto mb-4">
-            🚗
+            📍
           </div>
-          <h3 class="font-semibold text-gray-900 dark:text-white mb-2">By Car</h3>
+          <h3 class="font-semibold text-gray-900 dark:text-white mb-2">Location</h3>
           <p class="text-gray-600 dark:text-gray-400">
-            Free parking available on-site with easy drop-off area
+            3rd street, Kalaingar Nagar<br/>
+            Avadi, Chennai - 600062
           </p>
         </div>
         
         <div class="text-center">
           <div class="w-16 h-16 bg-secondary-100 dark:bg-secondary-900/30 rounded-full flex items-center justify-center text-secondary-600 dark:text-secondary-400 text-2xl mx-auto mb-4">
-            🚌
+            📱
           </div>
-          <h3 class="font-semibold text-gray-900 dark:text-white mb-2">Public Transit</h3>
+          <h3 class="font-semibold text-gray-900 dark:text-white mb-2">Contact Us</h3>
           <p class="text-gray-600 dark:text-gray-400">
-            Bus stops 12 and 45 are just a 5-minute walk away
+            WhatsApp: {siteConfig.phone}<br/>
+            Email: {siteConfig.email}
           </p>
         </div>
         
         <div class="text-center">
           <div class="w-16 h-16 bg-accent-100 dark:bg-accent-900/30 rounded-full flex items-center justify-center text-accent-600 dark:text-accent-400 text-2xl mx-auto mb-4">
-            🚶
+            🏠
           </div>
-          <h3 class="font-semibold text-gray-900 dark:text-white mb-2">Walking</h3>
+          <h3 class="font-semibold text-gray-900 dark:text-white mb-2">Home-Based Care</h3>
           <p class="text-gray-600 dark:text-gray-400">
-            Located in a pet-friendly neighborhood with sidewalks
+            Safe, comfortable environment where pets feel at home
           </p>
         </div>
       </div>

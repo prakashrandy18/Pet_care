@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { siteConfig } from '../../config/theme'
-import { BLOG_CATEGORIES, CERTIFICATIONS } from '../../config/constants'
+import { CERTIFICATIONS } from '../../config/constants'
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear()
@@ -9,31 +9,20 @@ const Footer: React.FC = () => {
   const footerLinks = {
     services: [
       { href: '/services#daycare', label: 'Pet Daycare' },
-      { href: '/services#grooming', label: 'Grooming' },
-      { href: '/services#boarding', label: 'Boarding' },
-      { href: '/services#training', label: 'Training' },
-      { href: '/services#walking', label: 'Dog Walking' },
-      { href: '/services#taxi', label: 'Pet Taxi' }
+      { href: '/services#boarding', label: 'Pet Boarding' }
     ],
     company: [
       { href: '/about', label: 'About Us' },
       { href: '/about#team', label: 'Our Team' },
-      { href: '/blog', label: 'Blog' },
-      { href: '/contact', label: 'Contact' },
-      { href: '/privacy', label: 'Privacy Policy' },
-      { href: '/terms', label: 'Terms of Service' }
-    ],
-    categories: BLOG_CATEGORIES.map(cat => ({
-      href: `/blog/category/${cat.slug}`,
-      label: cat.name
-    }))
+      { href: '/contact', label: 'Contact' }
+    ]
   }
 
   return (
     <footer className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <motion.div
@@ -43,9 +32,11 @@ const Footer: React.FC = () => {
               transition={{ duration: 0.5 }}
             >
               <a href="/" className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full flex items-center justify-center">
-                  <span className="text-2xl" role="img" aria-label="Paw">🐾</span>
-                </div>
+                <img 
+                  src="/images/ps-pet-care-logo.jpg" 
+                  alt="PS Pet Care Logo" 
+                  className="w-12 h-12 object-cover rounded-full"
+                />
                 <span className="text-2xl font-display font-bold text-gray-900 dark:text-white">
                   {siteConfig.name}
                 </span>
@@ -176,29 +167,6 @@ const Footer: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Blog Categories */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Blog Topics</h3>
-              <ul className="space-y-2">
-                {footerLinks.categories.map((link) => (
-                  <li key={link.href}>
-                    <a
-                      href={link.href}
-                      className="text-gray-600 dark:text-gray-400 hover:text-primary-500 transition-colors"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          </div>
         </div>
 
         {/* Certifications */}

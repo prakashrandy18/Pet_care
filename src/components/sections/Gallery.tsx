@@ -13,21 +13,21 @@ const Gallery: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null)
 
   const galleryImages: GalleryImage[] = [
-    { id: 1, src: '/images/gallery/happy-dog-1.jpg', alt: 'Happy golden retriever playing', category: 'dogs' },
-    { id: 2, src: '/images/gallery/cat-grooming.jpg', alt: 'Cat being groomed', category: 'grooming' },
-    { id: 3, src: '/images/gallery/dogs-playing.jpg', alt: 'Dogs playing together', category: 'playing' },
-    { id: 4, src: '/images/gallery/happy-cat-1.jpg', alt: 'Content cat resting', category: 'cats' },
-    { id: 5, src: '/images/gallery/dog-grooming.jpg', alt: 'Dog getting a bath', category: 'grooming' },
-    { id: 6, src: '/images/gallery/puppy-play.jpg', alt: 'Puppies playing with toys', category: 'playing' },
-    { id: 7, src: '/images/gallery/happy-dog-2.jpg', alt: 'Smiling labrador', category: 'dogs' },
-    { id: 8, src: '/images/gallery/cat-playing.jpg', alt: 'Cat playing with feather toy', category: 'cats' },
+    { id: 1, src: 'https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=500&h=500&fit=crop&crop=faces', alt: 'Happy dog enjoying daycare', category: 'dogs' },
+    { id: 2, src: 'https://images.unsplash.com/photo-1571566882372-1598d88abd90?w=500&h=500&fit=crop&crop=faces', alt: 'Cat relaxing comfortably', category: 'cats' },
+    { id: 3, src: 'https://images.unsplash.com/photo-1605197788044-5a85b3e9eb5b?w=500&h=500&fit=crop&crop=faces', alt: 'Colorful parrot in care', category: 'grooming' },
+    { id: 4, src: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=500&h=500&fit=crop&crop=faces', alt: 'Multiple pets socializing', category: 'playing' },
+    { id: 5, src: 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=500&h=500&fit=crop&crop=faces', alt: 'Dog having fun at daycare', category: 'dogs' },
+    { id: 6, src: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500&h=500&fit=crop&crop=faces', alt: 'Beautiful cat portrait', category: 'cats' },
+    { id: 7, src: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=500&fit=crop&crop=faces', alt: 'Dog getting groomed', category: 'grooming' },
+    { id: 8, src: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=500&h=500&fit=crop&crop=faces', alt: 'Playful pets together', category: 'playing' },
   ]
 
   const categories = [
     { id: 'all', label: 'All Pets', icon: '🐾' },
     { id: 'dogs', label: 'Dogs', icon: '🐕' },
     { id: 'cats', label: 'Cats', icon: '🐈' },
-    { id: 'grooming', label: 'Grooming', icon: '✂️' },
+    { id: 'grooming', label: 'Care', icon: '✂️' },
     { id: 'playing', label: 'Playing', icon: '🎾' }
   ]
 
@@ -110,15 +110,28 @@ const Gallery: React.FC = () => {
                 onClick={() => setSelectedImage(image)}
                 className="relative group cursor-pointer overflow-hidden rounded-2xl bg-gray-100 dark:bg-gray-800 aspect-square"
               >
-                {/* Placeholder image with gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-100 to-accent-100 dark:from-primary-900 dark:to-accent-900" />
+                {/* Actual image with fallback */}
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  loading="lazy"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const fallbackDiv = target.nextElementSibling as HTMLElement;
+                    if (fallbackDiv) {
+                      fallbackDiv.style.opacity = '1';
+                    }
+                  }}
+                />
                 
-                {/* Image would go here in production */}
-                <div className="absolute inset-0 flex items-center justify-center">
+                {/* Loading/fallback overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-100 to-accent-100 dark:from-primary-900 dark:to-accent-900 flex items-center justify-center">
                   <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="text-6xl opacity-20"
+                    className="text-6xl opacity-30"
                   >
                     🐾
                   </motion.div>
@@ -177,15 +190,11 @@ const Gallery: React.FC = () => {
 
                 {/* Image Container */}
                 <div className="relative aspect-video bg-gradient-to-br from-primary-100 to-accent-100 dark:from-primary-900 dark:to-accent-900">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                      className="text-9xl opacity-20"
-                    >
-                      🐾
-                    </motion.div>
-                  </div>
+                  <img
+                    src={selectedImage.src}
+                    alt={selectedImage.alt}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
                 </div>
 
                 {/* Image Details */}
@@ -214,7 +223,9 @@ const Gallery: React.FC = () => {
             Want to see your pet featured in our gallery?
           </p>
           <motion.a
-            href="/contact"
+            href="https://forms.gle/YJ4bxyNAo1SmQ92v9"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 bg-accent-500 text-white rounded-xl font-semibold hover:bg-accent-600 transition-all duration-200 shadow-lg hover:shadow-xl"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
