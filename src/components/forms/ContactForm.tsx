@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { submitContactForm } from '../../lib/supabase'
 
 interface FormData {
   name: string
@@ -72,19 +73,21 @@ const ContactForm: React.FC = () => {
     }
 
     setIsSubmitting(true)
+    setErrors({})
 
-    // Store form data in localStorage
-    const submissions = JSON.parse(localStorage.getItem('contactSubmissions') || '[]')
-    const newSubmission = {
-      ...formData,
-      id: Date.now().toString(),
-      submittedAt: new Date().toISOString()
-    }
-    submissions.push(newSubmission)
-    localStorage.setItem('contactSubmissions', JSON.stringify(submissions))
+    try {
+      const { success, error } = await submitContactForm({
+        full_name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        pet_name: formData.petName,
+        pet_type: formData.petType,
+        service: formData.service,
+        message: formData.message
+      })
 
-    // Simulate form submission
-    setTimeout(() => {
+      if (!success) throw new Error(error || 'Failed to submit form')
+
       setIsSubmitting(false)
       setShowSuccess(true)
       
@@ -101,7 +104,11 @@ const ContactForm: React.FC = () => {
         })
         setShowSuccess(false)
       }, 3000)
-    }, 2000)
+    } catch (err: any) {
+      console.error('Error submitting form:', err)
+      setErrors({ submit: err.message || 'Something went wrong. Please try again later.' })
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {

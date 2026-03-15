@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useGalleryImages } from '../../lib/useSupabaseData'
 
 interface GalleryImage {
   id: number
@@ -11,8 +12,9 @@ interface GalleryImage {
 const Gallery: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null)
+  const { data: dbImages } = useGalleryImages()
 
-  const galleryImages: GalleryImage[] = [
+  const hardcodedImages: GalleryImage[] = [
     { id: 1, src: 'https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=500&h=500&fit=crop&crop=faces', alt: 'Happy golden retriever enjoying professional daycare services at PS Pet Care Chennai facility', category: 'dogs' },
     { id: 2, src: 'https://images.unsplash.com/photo-1571566882372-1598d88abd90?w=500&h=500&fit=crop&crop=faces', alt: 'Relaxed cat receiving personal attention during boarding at PS Pet Care Avadi', category: 'cats' },
     { id: 3, src: 'https://images.unsplash.com/photo-1605197788044-5a85b3e9eb5b?w=500&h=500&fit=crop&crop=faces', alt: 'Colorful parrot receiving specialized care and attention at PS Pet Care facility', category: 'grooming' },
@@ -22,6 +24,16 @@ const Gallery: React.FC = () => {
     { id: 7, src: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=500&fit=crop&crop=faces', alt: 'Dog receiving professional grooming and care services at PS Pet Care facility', category: 'grooming' },
     { id: 8, src: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=500&h=500&fit=crop&crop=faces', alt: 'Multiple playful pets enjoying interactive activities together at PS Pet Care Chennai', category: 'playing' },
   ]
+
+  // Map DB images to GalleryImage format
+  const galleryImages: GalleryImage[] = dbImages.length > 0
+    ? dbImages.map((img: any) => ({
+        id: img.id,
+        src: img.image_url,
+        alt: img.alt_text || 'Pet photo',
+        category: (img.category?.toLowerCase() as any) || 'dogs'
+      }))
+    : hardcodedImages
 
   const categories = [
     { id: 'all', label: 'All Pets', icon: '🐾' },

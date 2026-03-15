@@ -187,6 +187,15 @@ export async function updateContactSubmissionStatus(id: string, status: string, 
   return data
 }
 
+export async function submitContactForm(submission: Record<string, any>) {
+  try {
+    const data = await createContactSubmission(submission)
+    return { success: true, data }
+  } catch (error: any) {
+    return { success: false, error: error.message }
+  }
+}
+
 // ============ BOOKING SUBMISSIONS ============
 export async function getBookingSubmissions() {
   const { data, error } = await supabase.from('booking_submissions').select('*').order('created_at', { ascending: false })
@@ -206,6 +215,15 @@ export async function updateBookingSubmissionStatus(id: string, status: string, 
   const { data, error } = await supabase.from('booking_submissions').update(update).eq('id', id).select().single()
   if (error) throw error
   return data
+}
+
+export async function submitBookingForm(submission: Record<string, any>) {
+  try {
+    const data = await createBookingSubmission(submission)
+    return { success: true, data }
+  } catch (error: any) {
+    return { success: false, error: error.message }
+  }
 }
 
 // ============ DASHBOARD STATS ============

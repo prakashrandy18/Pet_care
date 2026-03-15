@@ -1,10 +1,17 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FAQ_ITEMS } from '../../config/constants'
+import { FAQ_ITEMS as FALLBACK_FAQ_ITEMS } from '../../config/constants'
+import { useFaqItems, mapDbFaqToLegacy } from '../../lib/useSupabaseData'
 import { siteConfig } from '../../config/theme'
 
 const FAQ: React.FC = () => {
   const [openItems, setOpenItems] = useState<string[]>([])
+  const { data: dbFaqItems } = useFaqItems()
+
+  // Use DB data if available, otherwise fall back to constants
+  const FAQ_ITEMS = dbFaqItems.length > 0
+    ? dbFaqItems.map(mapDbFaqToLegacy)
+    : [...FALLBACK_FAQ_ITEMS] as any[]
 
   const toggleItem = (itemId: string) => {
     setOpenItems(prev =>

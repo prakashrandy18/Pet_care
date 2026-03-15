@@ -1,10 +1,33 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { siteConfig } from '../../config/theme'
+import { siteConfig as FALLBACK_CONFIG } from '../../config/theme'
 import { CERTIFICATIONS } from '../../config/constants'
+import { useSiteSettings } from '../../lib/useSupabaseData'
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear()
+  const { data: dbSettings } = useSiteSettings()
+
+  // Merge DB settings with fallback siteConfig
+  const siteConfig = dbSettings ? {
+    ...FALLBACK_CONFIG,
+    name: dbSettings.site_name || FALLBACK_CONFIG.name,
+    phone: dbSettings.phone || FALLBACK_CONFIG.phone,
+    email: dbSettings.email || FALLBACK_CONFIG.email,
+    address: {
+      street: dbSettings.street || FALLBACK_CONFIG.address.street,
+      city: dbSettings.city || FALLBACK_CONFIG.address.city,
+      state: dbSettings.state || FALLBACK_CONFIG.address.state,
+      zip: dbSettings.zip || FALLBACK_CONFIG.address.zip,
+      country: FALLBACK_CONFIG.address.country
+    },
+    social: {
+      facebook: dbSettings.facebook_url || FALLBACK_CONFIG.social.facebook,
+      instagram: dbSettings.instagram_url || FALLBACK_CONFIG.social.instagram,
+      twitter: FALLBACK_CONFIG.social.twitter,
+      youtube: FALLBACK_CONFIG.social.youtube
+    }
+  } : FALLBACK_CONFIG
 
   const footerLinks = {
     services: [

@@ -1,8 +1,14 @@
 import React, { useState } from 'react'
-import { FAQ_ITEMS } from '../../config/constants'
+import { FAQ_ITEMS as FALLBACK_FAQ_ITEMS } from '../../config/constants'
+import { useFaqItems, mapDbFaqToLegacy } from '../../lib/useSupabaseData'
 
 const QuickFAQ: React.FC = () => {
   const [openItem, setOpenItem] = useState<string | null>(null)
+  const { data: dbFaqItems } = useFaqItems()
+
+  const FAQ_ITEMS = dbFaqItems.length > 0
+    ? dbFaqItems.map(mapDbFaqToLegacy)
+    : [...FALLBACK_FAQ_ITEMS] as any[]
 
   return (
     <section 

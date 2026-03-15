@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import React from "react";
+import { useSiteSettings } from "../../lib/useSupabaseData";
 
 const Hero: React.FC = () => {
+  const { data: dbSettings } = useSiteSettings()
+  const city = dbSettings?.city || "Chennai"
   return (
     <section 
       className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-50 via-white to-accent-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900"
@@ -42,7 +45,7 @@ const Hero: React.FC = () => {
               transition={{ delay: 0.4 }}
               className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 mb-8 leading-relaxed"
             >
-              Safe and reliable daycare and boarding services in Chennai. Your
+              Safe and reliable daycare and boarding services in {city}. Your
               pet's wellbeing is our priority.
             </motion.p>
 
@@ -122,7 +125,7 @@ const Hero: React.FC = () => {
                     title="PS Pet Care - Professional Pet Daycare Services"
                     className="w-full h-full object-cover rounded-full"
                     loading="eager"
-                    fetchpriority="high"
+                    fetchPriority="high"
                     decoding="async"
                     width="400"
                     height="400"

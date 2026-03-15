@@ -1,10 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { siteConfig } from '../../config/theme'
+import { siteConfig as FALLBACK_CONFIG } from '../../config/theme'
+import { useSiteSettings } from '../../lib/useSupabaseData'
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { data: dbSettings } = useSiteSettings()
+
+  // Merge DB settings with fallback siteConfig
+  const siteConfig = dbSettings ? {
+    ...FALLBACK_CONFIG,
+    name: dbSettings.site_name || FALLBACK_CONFIG.name,
+    phone: dbSettings.phone || FALLBACK_CONFIG.phone,
+    hours: {
+      weekday: dbSettings.weekday_hours || FALLBACK_CONFIG.hours.weekday,
+      saturday: dbSettings.saturday_hours || FALLBACK_CONFIG.hours.saturday,
+      sunday: dbSettings.sunday_hours || FALLBACK_CONFIG.hours.sunday
+    }
+  } : FALLBACK_CONFIG
 
   useEffect(() => {
     const handleScroll = () => {

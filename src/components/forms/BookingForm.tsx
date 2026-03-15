@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { SERVICES } from '../../config/constants'
+import { SERVICES as FALLBACK_SERVICES } from '../../config/constants'
+import { useServices, mapDbServiceToLegacy } from '../../lib/useSupabaseData'
+import { submitBookingForm } from '../../lib/supabase'
 
 interface BookingData {
   service: string
@@ -32,6 +34,12 @@ const BookingForm: React.FC = () => {
     ownerPhone: ''
   })
   const [errors, setErrors] = useState<{ [key: string]: string }>({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const { data: dbServices } = useServices()
+
+  const SERVICES = dbServices.length > 0
+    ? dbServices.map(mapDbServiceToLegacy)
+    : [...FALLBACK_SERVICES] as any[]
 
   const totalSteps = 3
 
@@ -76,21 +84,35 @@ const BookingForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (validateStep(3)) {
-      // Store booking data in localStorage
-      const bookings = JSON.parse(localStorage.getItem('bookingSubmissions') || '[]')
-      const newBooking = {
-        ...bookingData,
-        id: Date.now().toString(),
-        submittedAt: new Date().toISOString()
-      }
-      bookings.push(newBooking)
-      localStorage.setItem('bookingSubmissions', JSON.stringify(bookings))
+    if (!validateStep(3)) return
+
+    setIsSubmitting(true)
+    setErrors({})
+
+    try {
+      const selectedService = SERVICES.find(s => s.id === bookingData.service)
       
-      // Show success message
+      const { success, error } = await submitBookingForm({
+        service_id: bookingData.service,
+        service_title: selectedService?.title,
+        booking_date: bookingData.date,
+        booking_time: bookingData.time,
+        duration: bookingData.duration,
+        pet_name: bookingData.petName,
+        pet_type: bookingData.petType,
+        pet_age: bookingData.petAge,
+        special_needs: bookingData.specialNeeds,
+        owner_name: bookingData.ownerName,
+        owner_email: bookingData.ownerEmail,
+        owner_phone: bookingData.ownerPhone,
+        status: 'pending'
+      })
+
+      if (!success) throw new Error(error || 'Failed to submit booking')
+
+      setIsSubmitting(false)
       alert('Booking confirmed! We will contact you shortly.')
       
-      // Reset form
       setBookingData({
         service: '',
         date: '',
@@ -105,6 +127,10 @@ const BookingForm: React.FC = () => {
         ownerPhone: ''
       })
       setStep(1)
+    } catch (err: any) {
+      console.error('Error submitting booking:', err)
+      setErrors({ submit: err.message || 'Something went wrong. Please try again.' })
+      setIsSubmitting(false)
     }
   }
 
@@ -428,12 +454,13 @@ const BookingForm: React.FC = () => {
           ) : (
             <motion.button
               type="submit"
-              className="ml-auto px-6 py-3 bg-green-500 text-white rounded-lg font-medium hover:bg-green-600 transition-colors flex items-center gap-2"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              disabled={isSubmitting}
+              className={`ml-auto px-6 py-3 ${isSubmitting ? 'bg-gray-400' : 'bg-green-500 hover:bg-green-600'} text-white rounded-lg font-medium transition-colors flex items-center gap-2`}
+              whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+              whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
             >
-              Confirm Booking
-              <span>🐾</span>
+              {isSubmitting ? 'Confirming...' : 'Confirm Booking'}
+              {!isSubmitting && <span>🐾</span>}
             </motion.button>
           )}
         </div>

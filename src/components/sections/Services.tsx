@@ -1,9 +1,16 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { SERVICES } from '../../config/constants'
+import { SERVICES as FALLBACK_SERVICES } from '../../config/constants'
+import { useServices, mapDbServiceToLegacy } from '../../lib/useSupabaseData'
 
 const Services: React.FC = () => {
   const [hoveredService, setHoveredService] = useState<string | null>(null)
+  const { data: dbServices, loading } = useServices()
+
+  // Use DB data if available, otherwise fall back to hardcoded constants
+  const SERVICES = dbServices.length > 0
+    ? dbServices.map(mapDbServiceToLegacy)
+    : [...FALLBACK_SERVICES] as any[]
 
   return (
     <section 
@@ -79,7 +86,7 @@ const Services: React.FC = () => {
 
                   {/* Features */}
                   <ul className="space-y-2 mb-6">
-                    {service.features.map((feature, i) => (
+                    {service.features.map((feature: string, i: number) => (
                       <li
                         key={i}
                         className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"

@@ -1,8 +1,15 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { TESTIMONIALS } from '../../config/constants'
+import { TESTIMONIALS as FALLBACK_TESTIMONIALS } from '../../config/constants'
+import { useTestimonials, mapDbTestimonialToLegacy } from '../../lib/useSupabaseData'
 
 const Testimonials: React.FC = () => {
+  const { data: dbTestimonials, loading } = useTestimonials()
+
+  // Use DB data if available, otherwise fall back to constants
+  const TESTIMONIALS = dbTestimonials.length > 0
+    ? dbTestimonials.map(mapDbTestimonialToLegacy)
+    : [...FALLBACK_TESTIMONIALS] as any[]
 
   return (
     <section 

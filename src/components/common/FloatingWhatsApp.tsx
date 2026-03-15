@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { siteConfig } from '../../config/theme'
+import { siteConfig as FALLBACK_CONFIG } from '../../config/theme'
+import { useSiteSettings } from '../../lib/useSupabaseData'
 
 const FloatingWhatsApp: React.FC = () => {
   const [showTooltip, setShowTooltip] = useState(false)
   const [hasInteracted, setHasInteracted] = useState(false)
+  const { data: dbSettings } = useSiteSettings()
+
+  // Merge DB settings with fallback siteConfig
+  const siteConfig = dbSettings ? {
+    ...FALLBACK_CONFIG,
+    name: dbSettings.site_name || FALLBACK_CONFIG.name,
+    whatsapp: dbSettings.whatsapp || FALLBACK_CONFIG.whatsapp
+  } : FALLBACK_CONFIG
 
   // Show tooltip after 5 seconds if user hasn't interacted
   useEffect(() => {
