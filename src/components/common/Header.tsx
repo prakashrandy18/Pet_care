@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { siteConfig as FALLBACK_CONFIG } from '../../config/theme'
 import { useSiteSettings } from '../../lib/useSupabaseData'
+import { getSession } from '../../lib/supabase'
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const { data: dbSettings } = useSiteSettings()
 
   // Merge DB settings with fallback siteConfig
@@ -24,8 +26,16 @@ const Header: React.FC = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20)
     }
+    
+    // Check Auth Status
+    const checkAuth = async () => {
+      const session = await getSession()
+      setIsLoggedIn(!!session)
+    }
 
     window.addEventListener('scroll', handleScroll)
+    checkAuth()
+    
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -115,9 +125,7 @@ const Header: React.FC = () => {
 
               {/* Book Now Button - Desktop */}
               <motion.a
-                href="https://forms.gle/YJ4bxyNAo1SmQ92v9"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/contact#booking"
                 className="hidden lg:flex items-center gap-2 px-6 py-2.5 bg-primary-500 text-white rounded-lg font-medium hover:bg-primary-600 transition-all duration-200 hover:shadow-lg"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -126,6 +134,19 @@ const Header: React.FC = () => {
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
+              </motion.a>
+
+              {/* Portal Button - Desktop */}
+              <motion.a
+                href={isLoggedIn ? "/portal/dashboard" : "/login"}
+                className="hidden lg:flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 border border-gray-200 dark:border-gray-700 rounded-lg transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-800"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                {isLoggedIn ? "Dashboard" : "Sign In"}
               </motion.a>
 
               {/* Mobile Menu Button */}
@@ -193,19 +214,6 @@ const Header: React.FC = () => {
 
               {/* Mobile Menu Footer */}
               <div className="p-4 border-t border-gray-200 dark:border-gray-800 space-y-3">
-                <motion.a
-                  href="https://forms.gle/YJ4bxyNAo1SmQ92v9"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full px-6 py-4 bg-primary-500 text-white rounded-lg font-medium hover:bg-primary-600 transition-all duration-200 min-h-[52px] touch-manipulation"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Book Now
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </motion.a>
                 
                 <div className="text-center text-sm text-gray-600 dark:text-gray-400">
                   <p>Open: {siteConfig.hours.weekday}</p>

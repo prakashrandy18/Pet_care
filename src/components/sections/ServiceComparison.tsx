@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 import { SERVICES as FALLBACK_SERVICES } from '../../config/constants'
 import { useServices, mapDbServiceToLegacy } from '../../lib/useSupabaseData'
 
@@ -103,17 +104,15 @@ const ServiceComparison: React.FC = () => {
                     ))}
                   </ul>
 
-                  <a
-                    href="https://forms.gle/YJ4bxyNAo1SmQ92v9"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 w-full justify-center px-6 py-3 bg-primary-500 text-white rounded-lg font-medium hover:bg-primary-600 transition-colors"
-                  >
-                    Book {service.title}
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <motion.a
+                    href="/contact#booking"
+                    className="inline-flex items-center justify-center w-full px-6 py-3 bg-primary-500 text-white rounded-xl font-semibold hover:bg-primary-600 transition-all duration-200"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
-                  </a>
+                  </motion.a>
                 </div>
               </div>
             )

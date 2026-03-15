@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { submitContactForm } from '../../lib/supabase'
+import { useSiteSettings, useServices } from '../../lib/useSupabaseData'
+import emailjs from '@emailjs/browser'
 
 interface FormData {
   name: string
@@ -30,6 +32,7 @@ const ContactForm: React.FC = () => {
   const [errors, setErrors] = useState<FormErrors>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
+  const { data: dbSettings } = useSiteSettings()
 
   const services = [
     'Pet Daycare',
@@ -77,7 +80,7 @@ const ContactForm: React.FC = () => {
 
     try {
       const { success, error } = await submitContactForm({
-        full_name: formData.name,
+        name: formData.name,
         email: formData.email,
         phone: formData.phone,
         pet_name: formData.petName,
@@ -87,6 +90,55 @@ const ContactForm: React.FC = () => {
       })
 
       if (!success) throw new Error(error || 'Failed to submit form')
+
+      // Open WhatsApp with pre-filled message for the customer
+      const targetPhone = dbSettings?.whatsapp || '919962203484'
+      const waMessage = `Hi PS Pet Care!\n\nI have a new inquiry:\n*Name:* ${formData.name}\n*Pet:* ${formData.petName} (${formData.petType})\n*Service:* ${formData.service || 'General Inquiry'}\n*Message:* ${formData.message}\n\nPlease get back to me. Thanks!`
+
+      const whatsappUrl = `https://wa.me/${targetPhone}?text=${encodeURIComponent(waMessage)}`
+      
+      // Ping the Admin automatically
+      const adminPhone = '918072134062'
+      const adminMessage = `🚨 *NEW CONTACT INQUIRY* 🚨
+
+*Name:* ${formData.name}
+*Service:* ${formData.service || 'General Inquiry'}
+*Pet:* ${formData.petName} (${formData.petType})
+*Phone:* ${formData.phone}
+*Message:* ${formData.message}
+
+Please check the Admin Dashboard for full details.`
+
+      const adminUrl = `https://wa.me/${adminPhone}?text=${encodeURIComponent(adminMessage)}`
+      
+      // Prioritize the customer opening WhatsApp
+      window.open(whatsappUrl, '_blank')
+      
+      // Attempt to ping the admin in the background
+      setTimeout(() => {
+        window.open(adminUrl, '_blank')
+      }, 500)
+      
+      // Send email to admin using EmailJS
+      try {
+        emailjs.send(
+          import.meta.env.PUBLIC_EMAILJS_SERVICE_ID || 'default_service',
+          import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID || 'default_template',
+          {
+            to_email: 'pspetcare25@gmail.com',
+            from_name: formData.name,
+            service: formData.service || 'General Inquiry',
+            pet_name: formData.petName,
+            pet_type: formData.petType,
+            phone: formData.phone,
+            email: formData.email,
+            message: adminMessage
+          },
+          import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY || 'default_public_key'
+        )
+      } catch (err) {
+        console.error('EmailJS failed to send notification:', err)
+      }
 
       setIsSubmitting(false)
       setShowSuccess(true)

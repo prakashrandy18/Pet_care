@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { SERVICES as FALLBACK_SERVICES } from '../../config/constants'
-import { useServices, mapDbServiceToLegacy } from '../../lib/useSupabaseData'
+import { useServices, useSiteSettings, mapDbServiceToLegacy } from '../../lib/useSupabaseData'
 import { submitBookingForm } from '../../lib/supabase'
+import emailjs from '@emailjs/browser'
 
 interface BookingData {
   service: string
@@ -36,6 +37,7 @@ const BookingForm: React.FC = () => {
   const [errors, setErrors] = useState<{ [key: string]: string }>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { data: dbServices } = useServices()
+  const { data: dbSettings } = useSiteSettings()
 
   const SERVICES = dbServices.length > 0
     ? dbServices.map(mapDbServiceToLegacy)
@@ -93,10 +95,9 @@ const BookingForm: React.FC = () => {
       const selectedService = SERVICES.find(s => s.id === bookingData.service)
       
       const { success, error } = await submitBookingForm({
-        service_id: bookingData.service,
-        service_title: selectedService?.title,
-        booking_date: bookingData.date,
-        booking_time: bookingData.time,
+        service: selectedService?.title || bookingData.service,
+        date: bookingData.date,
+        time: bookingData.time,
         duration: bookingData.duration,
         pet_name: bookingData.petName,
         pet_type: bookingData.petType,
@@ -110,8 +111,75 @@ const BookingForm: React.FC = () => {
 
       if (!success) throw new Error(error || 'Failed to submit booking')
 
+      // Open WhatsApp with pre-filled message for the Customer
+      const targetPhone = dbSettings?.whatsapp || '919962203484'
+      const waMessage = `Hi PS Pet Care! 🐾
+
+I'd like to book a service:
+*Service:* ${selectedService?.title || 'Pet Care'}
+*Date:* ${bookingData.date}
+*Time:* ${bookingData.time}
+${bookingData.duration ? `*Duration:* ${bookingData.duration}\n` : ''}
+*Pet:* ${bookingData.petName} (${bookingData.petType})
+${bookingData.specialNeeds ? `*Special Needs:* ${bookingData.specialNeeds}\n` : ''}
+*My Details:*
+*Name:* ${bookingData.ownerName}
+*Phone:* ${bookingData.ownerPhone}
+
+Please confirm my booking. Thanks!`
+
+      const whatsappUrl = `https://wa.me/${targetPhone}?text=${encodeURIComponent(waMessage)}`
+      
+      // Ping the Admin automatically
+      const adminPhone = '918072134062'
+      const adminMessage = `🚨 *NEW BOOKING ALERT* 🚨
+
+*Name:* ${bookingData.ownerName}
+*Service:* ${selectedService?.title || 'Pet Care'}
+*Date:* ${bookingData.date} @ ${bookingData.time}
+*Pet:* ${bookingData.petName} (${bookingData.petType})
+*Phone:* ${bookingData.ownerPhone}
+
+Please check the Admin Dashboard for full details.`
+
+      const adminUrl = `https://wa.me/${adminPhone}?text=${encodeURIComponent(adminMessage)}`
+      
+      // Open customer link. (Browser limits to 1 automatic popup, so we prioritize the customer pinging the business)
+      // but in a real backend, we would use Twilio or Supabase Edge Functions to ping the admin silently.
+      window.open(whatsappUrl, '_blank')
+      
+      // Attempt to open the admin link if popup blockers allow it.
+      setTimeout(() => {
+        window.open(adminUrl, '_blank')
+      }, 500)
+      
+      // Send email to admin using EmailJS
+      // Note: This requires the user to set up EmailJS and add keys to .env
+      // We are adding the logic so it is ready once they put their keys in.
+      try {
+        emailjs.send(
+          import.meta.env.PUBLIC_EMAILJS_SERVICE_ID || 'default_service',
+          import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID || 'default_template',
+          {
+            to_email: 'pspetcare25@gmail.com',
+            from_name: bookingData.ownerName,
+            service: selectedService?.title || 'Pet Care',
+            date: bookingData.date,
+            time: bookingData.time,
+            pet_name: bookingData.petName,
+            pet_type: bookingData.petType,
+            phone: bookingData.ownerPhone,
+            email: bookingData.ownerEmail,
+            message: adminMessage
+          },
+          import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY || 'default_public_key'
+        )
+      } catch (err) {
+        console.error('EmailJS failed to send notification:', err)
+      }
+
       setIsSubmitting(false)
-      alert('Booking confirmed! We will contact you shortly.')
+      alert('Booking saved! Sending you to WhatsApp to confirm with us.')
       
       setBookingData({
         service: '',

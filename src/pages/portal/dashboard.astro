@@ -1,0 +1,164 @@
+---
+import PortalLayout from '../../layouts/PortalLayout.astro'
+
+// If not logged in, PortalNav handles redirection
+---
+
+<PortalLayout title="Customer Dashboard - PS Pet Care">
+  <div class="space-y-6">
+    <div class="flex items-center justify-between">
+      <h1 class="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+        <span class="text-3xl">👋</span> Dashboard Overview
+      </h1>
+      <a
+        href="/portal/bookings"
+        class="px-4 py-2 bg-primary-500 text-white rounded-lg text-sm font-medium hover:bg-primary-600 transition-colors shadow-sm"
+      >
+        New Booking
+      </a>
+    </div>
+
+    <!-- Quick Stats Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Pets Stat -->
+      <a href="/portal/pets" class="block group">
+        <div class="bg-white dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800 shadow-sm transition-all group-hover:shadow-md group-hover:border-primary-500/30 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-primary-500/10 to-transparent rounded-bl-full z-0 pointer-events-none"></div>
+          
+          <div class="relative z-10">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">My Pets</h3>
+              <span class="text-2xl">🐕</span>
+            </div>
+            <p class="text-3xl font-display font-bold text-gray-900 dark:text-white" id="stat-pets">
+              -
+            </p>
+            <p class="text-sm text-primary-600 dark:text-primary-400 mt-2 flex items-center gap-1 font-medium">
+              View Profiles &rarr;
+            </p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Upcoming Bookings Stat -->
+      <a href="/portal/bookings" class="block group">
+        <div class="bg-white dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800 shadow-sm transition-all group-hover:shadow-md group-hover:secondary-500/30 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-secondary-500/10 to-transparent rounded-bl-full z-0 pointer-events-none"></div>
+          
+          <div class="relative z-10">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Upcoming Visits</h3>
+              <span class="text-2xl">📅</span>
+            </div>
+            <p class="text-3xl font-display font-bold text-gray-900 dark:text-white" id="stat-upcoming">
+              -
+            </p>
+            <p class="text-sm text-secondary-600 dark:text-secondary-400 mt-2 flex items-center gap-1 font-medium">
+              View Schedule &rarr;
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
+      
+      <div class="lg:col-span-2 space-y-6">
+        <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm overflow-hidden">
+          <div class="border-b border-gray-200 dark:border-gray-800 px-6 py-4 flex items-center justify-between">
+            <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Recent Activity</h2>
+          </div>
+          <div class="p-6">
+            <div class="text-center py-12">
+              <div class="w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                🌟
+              </div>
+              <h3 class="text-gray-900 dark:text-white font-medium mb-1">Welcome to PS Pet Care!</h3>
+              <p class="text-gray-500 dark:text-gray-400 text-sm max-w-sm mx-auto">
+                Get started by adding your pet's profile. You'll be able to easily book visits and track their stays here.
+              </p>
+              <div class="mt-6">
+                <a href="/portal/pets" class="inline-flex items-center justify-center px-4 py-2 bg-white dark:bg-gray-800 border-2 border-primary-500 text-primary-600 dark:text-primary-400 rounded-lg text-sm font-medium hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors">
+                  Add a Pet
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <!-- Quick Actions widget -->
+        <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm overflow-hidden">
+          <div class="border-b border-gray-200 dark:border-gray-800 px-6 py-4">
+            <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Need Help?</h2>
+          </div>
+          <div class="p-6 space-y-4">
+            <a href="https://wa.me/919962203484" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors border border-transparent hover:border-gray-200 dark:hover:border-gray-700">
+              <div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center text-xl">
+                📱
+              </div>
+              <div>
+                <p class="text-sm font-medium text-gray-900 dark:text-white">Message Us</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400">Fastest response via WhatsApp</p>
+              </div>
+            </a>
+            <a href="/services" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors border border-transparent hover:border-gray-200 dark:hover:border-gray-700">
+              <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl">
+                📋
+              </div>
+              <div>
+                <p class="text-sm font-medium text-gray-900 dark:text-white">View Services</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400">Check our latest pricing</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  
+  <script>
+    import { supabase, getSession, getCustomerProfile } from '../../lib/supabase'
+
+    // Fetch dashboard stats for the logged-in customer
+    async function loadDashboardStats() {
+      try {
+        const session = await getSession()
+        if (!session) return
+        
+        // 1. Get or create customer record
+        const customer = await getCustomerProfile()
+          
+        if (!customer) return
+        
+        // 2. Count pets
+        const { count: petsCount } = await supabase
+          .from('pet_profiles')
+          .select('id', { count: 'exact', head: true })
+          .eq('customer_id', customer.id)
+          
+        const petsEl = document.getElementById('stat-pets')
+        if (petsEl) petsEl.textContent = (petsCount || 0).toString()
+        
+        // 3. Count upcoming bookings
+        const { count: bookingsCount } = await supabase
+          .from('booking_submissions')
+          .select('id', { count: 'exact', head: true })
+          .eq('customer_id', customer.id)
+          .in('status', ['pending', 'confirmed'])
+          
+        const upcomingEl = document.getElementById('stat-upcoming')
+        if (upcomingEl) upcomingEl.textContent = (bookingsCount || 0).toString()
+
+      } catch (err) {
+        console.error('Failed to load portal stats:', err)
+      }
+    }
+
+    // Call it when the page loads
+    document.addEventListener('DOMContentLoaded', loadDashboardStats)
+  </script>
+</PortalLayout>

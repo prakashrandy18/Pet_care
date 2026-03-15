@@ -1,6 +1,8 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro'
 import Breadcrumb from '../components/common/Breadcrumb.astro'
+import ContactForm from '../components/forms/ContactForm'
+import BookingForm from '../components/forms/BookingForm'
 import { pageSEO } from '../config/seo'
 import { siteConfig } from '../config/theme'
 
@@ -139,56 +141,30 @@ const breadcrumbItems = [
         <div class="lg:col-span-2 space-y-12">
           <!-- Contact Form -->
           <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
-            <div class="text-center">
+            <div class="text-center mb-8">
               <div class="text-5xl mb-4">🐾</div>
               <h2 class="text-2xl font-display font-bold text-gray-900 dark:text-white mb-4">
                 Send Us a Message
               </h2>
-              <p class="text-gray-600 dark:text-gray-400 mb-8">
+              <p class="text-gray-600 dark:text-gray-400">
                 Tell us about your pet and how we can help. We'll get back to you within 24 hours!
               </p>
-              <a
-                href="https://forms.gle/fbJmQ9DtNic2fhcE6"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-8 py-4 bg-primary-500 text-white rounded-xl font-semibold text-lg hover:bg-primary-600 transition-all duration-200 shadow-lg hover:shadow-xl"
-              >
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                Send Message
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </a>
             </div>
+            <ContactForm client:visible />
           </div>
 
           <!-- Booking Form -->
           <div id="booking" class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
-            <div class="text-center">
+            <div class="text-center mb-8">
               <div class="text-5xl mb-4">📅</div>
               <h2 class="text-2xl font-display font-bold text-gray-900 dark:text-white mb-4">
                 Book a Service
               </h2>
-              <p class="text-gray-600 dark:text-gray-400 mb-8">
+              <p class="text-gray-600 dark:text-gray-400">
                 Ready to book daycare or boarding for your pet? Fill out our booking form and we'll confirm your appointment.
               </p>
-              <a
-                href="https://forms.gle/YJ4bxyNAo1SmQ92v9"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-8 py-4 bg-green-500 text-white rounded-xl font-semibold text-lg hover:bg-green-600 transition-all duration-200 shadow-lg hover:shadow-xl"
-              >
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                Book Now
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </a>
             </div>
+            <BookingForm client:visible />
           </div>
         </div>
       </div>

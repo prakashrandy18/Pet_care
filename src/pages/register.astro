@@ -1,0 +1,31 @@
+---
+import PageLayout from '../layouts/PageLayout.astro'
+import AuthForm from '../components/portal/AuthForm'
+
+// If already logged in, the React component will redirect to /portal/dashboard
+---
+
+<PageLayout
+  title="Create Account - Ps Pet Care"
+  description="Sign up for a PS Pet Care customer account to manage your pets and bookings."
+  noindex={true}
+>
+  <div class="min-h-[80vh] flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-950">
+    <div class="max-w-md w-full space-y-8">
+      <div class="text-center">
+        <div class="w-16 h-16 bg-secondary-100 dark:bg-secondary-900/30 text-secondary-600 dark:text-secondary-400 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4 shadow-sm">
+          👋
+        </div>
+        <h2 class="mt-6 text-3xl font-display font-bold text-gray-900 dark:text-white">
+          Join PS Pet Care
+        </h2>
+        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+          Already have an account? <a href="/login" class="font-medium text-primary-600 hover:text-primary-500 transition-colors">Log in here</a>
+        </p>
+      </div>
+
+      <AuthForm client:only="react" type="register" />
+      
+    </div>
+  </div>
+</PageLayout>

@@ -56,9 +56,7 @@ const Hero: React.FC = () => {
               className="flex flex-col sm:flex-row gap-4 mb-8"
             >
               <motion.a
-                href="https://forms.gle/YJ4bxyNAo1SmQ92v9"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/contact#booking"
                 className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-4 bg-primary-500 text-white rounded-xl font-semibold text-base sm:text-lg hover:bg-primary-600 transition-all duration-200 shadow-lg hover:shadow-xl group min-h-[48px] touch-manipulation w-full sm:w-auto"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

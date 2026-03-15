@@ -72,10 +72,8 @@ const CTA: React.FC = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
           >
             <motion.a
-              href="https://forms.gle/YJ4bxyNAo1SmQ92v9"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-primary-600 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-all duration-200 shadow-xl hover:shadow-2xl group"
+              href="/contact#booking"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-primary-600 rounded-xl font-semibold text-lg hover:bg-gray-50 transition-all duration-200 shadow-xl shadow-primary-500/20 w-full sm:w-auto min-h-[56px] touch-manipulation group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

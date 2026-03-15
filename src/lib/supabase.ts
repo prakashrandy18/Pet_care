@@ -12,6 +12,18 @@ export async function signIn(email: string, password: string) {
   return data
 }
 
+export async function signUp(email: string, password: string, metadata?: Record<string, any>) {
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: metadata
+    }
+  })
+  if (error) throw error
+  return data
+}
+
 export async function signOut() {
   const { error } = await supabase.auth.signOut()
   if (error) throw error
@@ -20,6 +32,35 @@ export async function signOut() {
 export async function getSession() {
   const { data: { session } } = await supabase.auth.getSession()
   return session
+}
+
+export async function getCustomerProfile() {
+  const session = await getSession()
+  if (!session) return null
+
+  const { data: customer } = await supabase
+    .from('customers')
+    .select('*')
+    .eq('user_id', session.user.id)
+    .single()
+
+  if (customer) return customer
+
+  const { data: newCustomer, error } = await supabase
+    .from('customers')
+    .insert({
+      user_id: session.user.id,
+      full_name: session.user.user_metadata?.full_name || 'Customer',
+      phone: session.user.user_metadata?.phone || '',
+    })
+    .select()
+    .single()
+
+  if (error) {
+    console.error('Failed to create JIT customer profile:', error)
+    return null
+  }
+  return newCustomer
 }
 
 // ============ SITE SETTINGS ============
@@ -219,6 +260,11 @@ export async function updateBookingSubmissionStatus(id: string, status: string, 
 
 export async function submitBookingForm(submission: Record<string, any>) {
   try {
+    const customer = await getCustomerProfile()
+    if (customer) {
+      submission.customer_id = customer.id
+    }
+    
     const data = await createBookingSubmission(submission)
     return { success: true, data }
   } catch (error: any) {

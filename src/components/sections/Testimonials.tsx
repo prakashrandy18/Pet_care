@@ -106,10 +106,8 @@ const Testimonials: React.FC = () => {
             Join hundreds of happy pet parents!
           </p>
           <motion.a
-            href="https://forms.gle/YJ4bxyNAo1SmQ92v9"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 text-white rounded-lg font-medium hover:bg-primary-600 transition-all duration-200 shadow-lg hover:shadow-xl"
+            href="/contact#booking"
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-500 text-white rounded-xl font-semibold text-lg hover:bg-primary-600 transition-all duration-200 shadow-lg hover:shadow-xl group min-h-[56px] touch-manipulation w-full sm:w-auto"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
