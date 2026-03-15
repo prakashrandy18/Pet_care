@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { SERVICES as FALLBACK_SERVICES } from '../../config/constants'
 import { useServices, useSiteSettings, mapDbServiceToLegacy } from '../../lib/useSupabaseData'
-import { submitBookingForm } from '../../lib/supabase'
+import { submitBookingForm, supabase, getCustomerProfile } from '../../lib/supabase'
 import emailjs from '@emailjs/browser'
 
 interface BookingData {
@@ -36,8 +36,61 @@ const BookingForm: React.FC = () => {
   })
   const [errors, setErrors] = useState<{ [key: string]: string }>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [savedPets, setSavedPets] = useState<any[]>([])
+  
   const { data: dbServices } = useServices()
   const { data: dbSettings } = useSiteSettings()
+
+  useEffect(() => {
+    const loadCustomerData = async () => {
+      try {
+        const { data: { session } } = await supabase.auth.getSession()
+        if (!session) return
+
+        const customer = await getCustomerProfile()
+        if (customer) {
+          setBookingData(prev => ({
+            ...prev,
+            ownerName: customer.full_name || prev.ownerName,
+            ownerPhone: customer.phone || prev.ownerPhone,
+            ownerEmail: session.user.email || prev.ownerEmail,
+          }))
+
+          const { data: pets } = await supabase
+            .from('pet_profiles')
+            .select('*')
+            .eq('customer_id', customer.id)
+            .order('created_at', { ascending: false })
+          
+          if (pets && pets.length > 0) {
+            setSavedPets(pets)
+          }
+        }
+      } catch (err) {
+        console.error('Error auto-filling customer data:', err)
+      }
+    }
+    loadCustomerData()
+  }, [])
+
+  const handlePetSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const petId = e.target.value
+    if (!petId) {
+      setBookingData(prev => ({ ...prev, petName: '', petType: 'dog', petAge: '', specialNeeds: '' }))
+      return
+    }
+    
+    const pet = savedPets.find(p => p.id === petId)
+    if (pet) {
+      setBookingData(prev => ({
+        ...prev,
+        petName: pet.pet_name,
+        petType: pet.pet_type,
+        petAge: pet.age || '',
+        specialNeeds: pet.medical_notes || ''
+      }))
+    }
+  }
 
   const SERVICES = dbServices.length > 0
     ? dbServices.map(mapDbServiceToLegacy)
@@ -351,6 +404,23 @@ Please check the Admin Dashboard for full details.`
               <h3 className="text-2xl font-display font-bold text-gray-900 dark:text-white mb-6">
                 Tell Us About Your Pet
               </h3>
+
+              {savedPets.length > 0 && (
+                <div className="mb-6 p-4 bg-primary-50 dark:bg-primary-900/10 rounded-xl border border-primary-100 dark:border-primary-900/30">
+                  <label className="block text-sm font-medium text-primary-900 dark:text-primary-100 mb-2">
+                    Quick Fill: Select a Saved Pet
+                  </label>
+                  <select 
+                    onChange={handlePetSelect}
+                    className="w-full px-4 py-2 border border-primary-200 dark:border-primary-800 bg-white dark:bg-gray-800 rounded-lg focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                  >
+                    <option value="">-- Enter details manually below --</option>
+                    {savedPets.map(pet => (
+                      <option key={pet.id} value={pet.id}>{pet.pet_name} ({pet.pet_type})</option>
+                    ))}
+                  </select>
+                </div>
+              )}
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
